@@ -6,7 +6,7 @@
     <title>PHP</title>
 </head>
 <body>
-    
+
     Name: <?php echo $_POST["name"]; ?><br>
     IP: <?php echo $_SERVER['REMOTE_ADDR']; ?>
 
@@ -14,7 +14,7 @@
         $name = $_POST["name"];
         $ip = $_SERVER['REMOTE_ADDR'];
         $file = fopen("log.txt", "a");
-        fwrite($file, $name . " " . $ip . "\n");
+        fwrite($file, $name . " | " . $ip . "\n");
         fclose($file);
     ?>
 
