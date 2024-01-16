@@ -18,7 +18,7 @@
         fclose($file);
 
         // make a file for each user
-        $users = fopen("users.txt", "a");
+        $users = fopen("users.txt", "r+");
 
         // check if user exists
         $userExists = false;
