@@ -1,0 +1,54 @@
+/* CSS */
+
+/* Style the form container */
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+}
+
+/* Style the form elements */
+.form-container input[type=text],
+.form-container input[type=password],
+.form-container select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Style the form buttons */
+.form-container input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Change the color of the form button when hovered */
+.form-container input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+/* Style the form labels */
+.form-container label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+/* Style the form errors */
+.form-container .error {
+    color: red;
+    margin-bottom: 20px;
+}
