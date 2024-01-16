@@ -6,9 +6,8 @@
     <title>PHP</title>
 </head>
 <body>
-    <form action="logNameAndIP.php" method="post">
-        Name: <input type="text" name="name"><br>
-    <input type="submit">
+    Name: <?php echo $_POST["name"]; ?><br>
+    IP: <?php echo $_SERVER['REMOTE_ADDR']; ?>
 </form>
 </body>
 </html>
