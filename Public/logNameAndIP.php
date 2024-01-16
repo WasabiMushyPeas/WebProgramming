@@ -16,6 +16,31 @@
         $file = fopen("log.txt", "a");
         fwrite($file, $name . " | " . $ip . "\n");
         fclose($file);
+
+        // make a file for each user
+        $users = fopen("users.txt", "a");
+
+        // check if user exists
+        $userExists = false;
+        while(!feof($users)) {
+            $line = fgets($users);
+            $line = explode(" | ", $line);
+            if ($line[0] == $name) {
+                $userExists = true;
+            }
+        }
+        // check if ip exists
+        while(!feof($users)) {
+            $line = fgets($users);
+            $line = explode(" | ", $line);
+            if ($line[1] == $ip) {
+                $userExists = true;
+            }
+        }
+        if (!$userExists) {
+            fwrite($users, $name . " | " . $ip . "\n");
+        }
+        fclose($users);
     ?>
 
 </form>
