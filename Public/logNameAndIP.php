@@ -7,8 +7,25 @@
 </head>
 <body>
 
-    Name: <?php echo $_POST["name"]; ?><br>
-    IP: <?php echo $_SERVER['REMOTE_ADDR']; ?>
+    Name: <?php
+    // Check if name is set
+    if (isset($_POST["name"])) {
+        echo $_POST["name"];
+    }else {
+        echo "No name set";
+    }
+    echo 
+    ?><br>
+
+
+    IP: <?php 
+    // Check if ip is set
+    if (isset($_SERVER['REMOTE_ADDR'])) {
+        echo $_SERVER['REMOTE_ADDR'];
+    }else {
+        echo "No ip set";
+    }
+    ?><br>
 
     <?php
         $name = $_POST["name"];
@@ -39,6 +56,8 @@
         }
         if (!$userExists) {
             fwrite($users, $name . " | " . $ip . "\n");
+        }else {
+            echo "Welcome back!";
         }
         fclose($users);
     ?>
