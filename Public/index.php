@@ -13,10 +13,10 @@
     <div class="inputBox">
         <form action="logNameAndIP.php" method="post">
             <div>
-                <input type="text" name="name" value="Name"><br>
+                <input class="nameInput" type="text" name="name" value="Name"><br>
             </div>
             <div>
-                <input type="submit">
+                <input class="submitButton" type="submit">
             </div>
         </form>
     </div>

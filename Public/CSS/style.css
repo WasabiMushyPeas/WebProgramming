@@ -59,15 +59,51 @@ body {
 /* input box */
 .inputBox {
     display: flex;
-    align-self: center;
-    align-content: center;
-    justify-self: center;
     justify-content: center;
-    flex-direction: column;
+    align-content: center;
+
+    border-radius: 20px;
+
+    padding: 1rem;
+    margin: 1rem;
 
 
-    padding: 5rem;
+    background-color: var(--secondary);
+}
+
+.nameInput {
+    width: 100%;
+    height: 100%;
+
     border-radius: 20px;
 
     background-color: var(--secondary);
+    color: var(--text);
+
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+
+    margin: 1rem;
+
+    transition: 0.5s;
+}
+
+
+.submitButton {
+    width: 100%;
+    height: 100%;
+
+    border-radius: 20px;
+
+    background-color: var(--accent);
+    color: var(--text);
+
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+
+    margin: 1rem;
+
+    transition: 0.5s;
 }
