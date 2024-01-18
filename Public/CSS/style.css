@@ -24,6 +24,11 @@ html[data-theme="dark"] {
 }
 
 /* Main */
+body {
+    background-color: var(--background);
+}
+
+
 
 /* Theme switcher */
 .themeSwitcher {
@@ -49,4 +54,20 @@ html[data-theme="dark"] {
 .themeSwitcher:active {
     background-color: var(--accent);
     scale: 0.95;
+}
+
+/* input box */
+.inputBox {
+    display: flex;
+    align-self: center;
+    align-content: center;
+    justify-self: center;
+    justify-content: center;
+    flex-direction: column;
+
+
+    padding: 5rem;
+    border-radius: 20px;
+
+    background-color: var(--secondary);
 }
