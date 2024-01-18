@@ -26,3 +26,9 @@ html[data-theme="dark"] {
 /* Main */
 
 /* Theme switcher */
+.themeSwitcher {
+    position: fixed;
+    /* bottom right */
+    bottom: 1rem;
+    right: 1rem;
+}

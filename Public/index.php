@@ -15,6 +15,10 @@
             <input type="submit">
         </form>
     </div>
+
+    <div class="themeSwitcher">
+        <img class="themeSwitcherIMG" src="images/moon.png" alt="light" onclick="switchTheme()">
+    </div>
 </body>
 
 </html>
