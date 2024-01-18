@@ -9,10 +9,12 @@
 </head>
 
 <body>
-    <form action="logNameAndIP.php" method="post">
-        Name: <input type="text" name="name"><br>
-        <input type="submit">
-    </form>
+    <div class="inputBox">
+        <form action="logNameAndIP.php" method="post">
+            <input type="text" name="name" value="Name"><br>
+            <input type="submit">
+        </form>
+    </div>
 </body>
 
 </html>
