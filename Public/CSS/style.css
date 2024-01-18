@@ -28,7 +28,25 @@ html[data-theme="dark"] {
 /* Theme switcher */
 .themeSwitcher {
     position: fixed;
+
     /* bottom right */
-    bottom: 1rem;
-    right: 1rem;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 0.5rem;
+
+    background-color: var(--accent);
+    border-radius: 20px;
+
+    transition: 0.5s;
+}
+
+.themeSwitcher:hover {
+    cursor: pointer;
+    background-color: var(--secondary);
+    scale: 1.05;
+}
+
+.themeSwitcher:active {
+    background-color: var(--accent);
+    scale: 0.95;
 }
