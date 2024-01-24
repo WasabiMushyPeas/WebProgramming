@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+
+:root {
+    --text: #070c0c;
+    --background: #fafcfd;
+    --primary: #57b5c1;
+    --secondary: #98d9e2;
+    --accent: #57ccdc;
+}
+
+:html[data-theme="light"] {
+    --text: #070c0c;
+    --background: #fafcfd;
+    --primary: #57b5c1;
+    --secondary: #98d9e2;
+    --accent: #57ccdc;
+}
+
+:html[data-theme="dark"] {
+    --text: #f2f7f7;
+    --background: #010304;
+    --primary: #3e9ba8;
+    --secondary: #1d5f67;
+    --accent: #239aa9;
+}
+
+table {
+    margin: auto;
+}
