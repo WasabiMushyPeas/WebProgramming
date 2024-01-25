@@ -13,7 +13,14 @@ if (isset($_POST['mode'])) {
 }
 ?>
 
-<html lang="en">
+<?php
+// check theme cookie
+if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
+    echo ('<html lang="en" data-theme="dark">');
+} else {
+    echo ('<html lang="en" data-theme="light">');
+}
+?>
 
 <head>
     <meta charset="UTF-8">

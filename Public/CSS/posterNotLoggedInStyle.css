@@ -8,7 +8,7 @@
     --accent: #57ccdc;
 }
 
-:html[data-theme="light"] {
+html[data-theme="light"] {
     --text: #070c0c;
     --background: #fafcfd;
     --primary: #57b5c1;
@@ -16,7 +16,7 @@
     --accent: #57ccdc;
 }
 
-:html[data-theme="dark"] {
+html[data-theme="dark"] {
     --text: #f2f7f7;
     --background: #010304;
     --primary: #3e9ba8;
