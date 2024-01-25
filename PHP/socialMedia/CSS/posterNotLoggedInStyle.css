@@ -73,3 +73,20 @@ h1 {
 #postButton:active {
     scale: 0.9;
 }
+
+#userButton {
+    position: fixed;
+
+    bottom: calc(2rem + 50px + 0.2rem);
+    right: 2rem;
+
+    transition: 0.5s;
+}
+
+#userButton:hover {
+    scale: 1.1;
+}
+
+#userButton:active {
+    scale: 0.9;
+}
