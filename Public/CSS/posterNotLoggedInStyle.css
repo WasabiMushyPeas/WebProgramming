@@ -30,6 +30,12 @@ center {
 
 h1 {
     font-family: 'Poppins', sans-serif;
+    color: var(--text);
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
 }
 
 /* Main Table */

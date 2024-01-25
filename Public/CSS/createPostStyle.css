@@ -27,3 +27,8 @@ html[data-theme="dark"] {
 table {
     margin: auto;
 }
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+}
