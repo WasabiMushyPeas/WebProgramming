@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/images/php.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <title>PHP</title>
 </head>
 
@@ -38,12 +38,12 @@
         $name = "UNKNOWN";
     }
     $ip = $_SERVER['REMOTE_ADDR'];
-    $file = fopen("log.txt", "a");
+    $file = fopen("./LOGS/log.txt", "a");
     fwrite($file, $name . " | " . $ip . "\n");
     fclose($file);
 
     // make a file for each user
-    $users = fopen("users.txt", "r+");
+    $users = fopen("./LOGS/users.txt", "r+");
 
     // check if user exists
     $userExists = false;
