@@ -1,6 +1,15 @@
 <?php
 // check if form checkbox is checked
 if (isset($_POST['mode'])) {
+    // Check if cookie is set
+    if (isset($_COOKIE['mode'])) {
+        // check if cookie is different from form checkbox
+        if ($_POST['mode']) {
+            if ($_COOKIE['mode'] == 'light') {
+
+            }
+        }
+    }
     if ($_POST['mode']) {
         // set cookie to dark mode
         setcookie('mode', 'dark', time() + (86400 * 30), "/");
@@ -8,9 +17,12 @@ if (isset($_POST['mode'])) {
         // set cookie to light mode
         setcookie('mode', 'light', time() + (86400 * 30), "/");
     }
+    // redirect to index.php
+    header('Location: index.php');
 } else {
     setcookie('mode', 'light', time() + (86400 * 30), "/");
 }
+
 ?>
 
 <?php

@@ -32,3 +32,8 @@ body {
     background-color: var(--background);
     color: var(--text);
 }
+
+h1 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+}
