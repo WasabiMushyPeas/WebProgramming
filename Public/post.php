@@ -42,6 +42,7 @@ if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
             <tr>
                 <td>
                     <form action="createPost.php" method="post">
+                        <input type="text" name="post" id="header" placeholder="Title">
                         <textarea name="post" id="post" cols="30" rows="10"
                             placeholder="What's on your mind?"></textarea>
                         <input type="submit" value="Post">
