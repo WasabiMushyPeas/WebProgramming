@@ -16,6 +16,14 @@ if (isset($_POST['post'])) {
     $header = $_POST['header'];
     $post = $_POST['post'];
 
+    // Limit the length of the header and post
+    if (strlen($header) > 100) {
+        $header = substr($header, 0, 100);
+    }
+    if (strlen($post) > 10000) {
+        $post = substr($post, 0, 10000);
+    }
+
     // Get current date and time
     $date = date('m/d/Y h:i:s a', time());
 
