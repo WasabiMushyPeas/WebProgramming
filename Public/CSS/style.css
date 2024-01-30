@@ -33,6 +33,16 @@ h1 {
     color: var(--text);
 }
 
+h2 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+}
+
 body {
     background-color: var(--background);
     color: var(--text);
