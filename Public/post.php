@@ -35,8 +35,10 @@ if (isset($_POST['post'])) {
     $header = str_replace("\n", "", $header);
     $post = str_replace("|>|<|", "", $post);
     $header = str_replace("|>|<|", "", $header);
-    $post = str_replace("<", "", $post);
-    $header = str_replace("<", "", $header);
+
+    // Clean the input
+    $post = htmlspecialchars($post);
+    $header = htmlspecialchars($header);
 
     fwrite($file, $header . " |>|<| " . $post . " |>|<| " . $ip . "|>|<|" . $date . "|>|<|" . $id . "\n");
     fclose($file);
