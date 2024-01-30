@@ -37,3 +37,14 @@ h1 {
     font-family: 'Poppins', sans-serif;
     color: var(--text);
 }
+
+/* Table for the header */
+#headerTableData {
+    border-radius: 5px;
+    background-color: var(--primary);
+}
+
+#headerTable {
+    margin-left: auto;
+    margin-right: auto;
+}

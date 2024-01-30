@@ -1,15 +1,7 @@
 <?php
 // check if form checkbox is checked
 if (isset($_POST['mode'])) {
-    // // Check if cookie is set
-    // if (isset($_COOKIE['mode'])) {
-    //     // check if cookie is different from form checkbox
-    //     if ($_POST['mode']) {
-    //         if ($_COOKIE['mode'] == 'light') {
 
-    //         }
-    //     }
-    // }
     if ($_POST['mode']) {
         // set cookie to dark mode
         setcookie('mode', 'dark', time() + (86400 * 30), "/");
@@ -37,12 +29,31 @@ if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./CSS/createPostStyle.css">
+    <link rel="stylesheet" href="./CSS/style.css">
     <title>Create Post</title>
 </head>
 
 <body>
     <table>
+        <tr id="headerTableRow">
+            <td id="headerTableData">
+                <!-- Header Table -->
+                <table id="headerTable">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="./IMAGES/poster.png" width="38" height="38">
+                            </td>
+                            <td>
+                                <h1 style="transform: translateY(10px);">Poster</h1>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+
         <tr>
             <td>
                 <h1>User Settings</h1>
