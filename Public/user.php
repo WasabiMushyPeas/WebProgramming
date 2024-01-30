@@ -34,44 +34,46 @@ if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
 </head>
 
 <body>
-    <table>
-        <tr id="headerTableRow">
-            <td id="headerTableData">
-                <!-- Header Table -->
-                <table id="headerTable">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <img src="./IMAGES/poster.png" width="38" height="38">
-                            </td>
-                            <td>
-                                <h1 style="transform: translateY(10px);">Poster</h1>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </td>
-        </tr>
+    <center>
+        <table id="mainTable">
+            <tr id="headerTableRow">
+                <td id="headerTableData">
+                    <!-- Header Table -->
+                    <table id="headerTable">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="./index.php"><img src="./IMAGES/poster.png" width="38" height="38"></a>
+                                </td>
+                                <td>
+                                    <h1 style="transform: translateY(10px);">Poster</h1>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
 
 
-        <tr>
-            <td>
-                <h1>User Settings</h1>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form method="post">
-                    <?php if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
-                        echo ('<input type="checkbox" name="mode" value="theme" checked> Dark Mode');
-                    } else {
-                        echo ('<input type="checkbox" name="mode" value="theme"> Dark Mode');
-                    } ?>
-                    <input type="submit" value="Save">
-                </form>
-            </td>
-        </tr>
-    </table>
+            <tr>
+                <td>
+                    <h1>User Settings</h1>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <form method="post">
+                        <?php if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
+                            echo ('<input type="checkbox" name="mode" value="theme" checked> Dark Mode');
+                        } else {
+                            echo ('<input type="checkbox" name="mode" value="theme"> Dark Mode');
+                        } ?>
+                        <input type="submit" value="Save">
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </center>
 </body>
 
 </html>
