@@ -19,8 +19,20 @@ if (isset($_POST['post'])) {
     // Get current date and time
     $date = date('m/d/Y h:i:s a', time());
 
-    fwrite($file, $header . " |>|<| " . $post . " |>|<| " . $ip . "|>|<|" . $date . "\n");
+    // Generate a random ID
+    $id = date('YmdHis', time()) . rand(1000, 9999);
+
+    // Remove newlines from the post
+    $post = str_replace("\n", "", $post);
+    $header = str_replace("\n", "", $header);
+    $post = str_replace("|>|<|", "", $post);
+    $header = str_replace("|>|<|", "", $header);
+
+    fwrite($file, $header . " |>|<| " . $post . " |>|<| " . $ip . "|>|<|" . $date . "|>|<|" . $id . "\n");
     fclose($file);
+
+    // Redirect to index.php
+    header('Location: index.php');
 }
 ?>
 

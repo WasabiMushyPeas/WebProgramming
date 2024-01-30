@@ -48,7 +48,44 @@ if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
                             <tbody>
                                 <tr>
                                     <td>
-                                        <h2>Posts</h2>
+                                        <table>
+                                            <tbody>
+                                                <?php
+                                                // Read the posts from the file
+                                                $file = fopen("./POSTS/posts.txt", "r");
+
+                                                // Read the file line by line
+                                                while (!feof($file)) {
+                                                    $line = fgets($file);
+
+                                                    if ($line != "") {
+                                                        // Split the line into an array
+                                                        $lineContent = explode("|>|<|", $line);
+
+                                                        // Display the post
+                                                        echo ('<tr class="postHeader">');
+                                                        echo ('<td>');
+                                                        echo ('<h2>' . $lineContent[0] . '</h2>');
+                                                        echo ('</td>');
+                                                        echo ('</tr>');
+                                                        echo ('<tr class="postContent">');
+                                                        echo ('<td>');
+                                                        echo ('<p>' . $lineContent[1] . '</p>');
+                                                        echo ('</td>');
+                                                        echo ('</tr>');
+                                                        echo ('<tr class="postFooter">');
+                                                        echo ('<td>');
+                                                        echo ('<p>Posted by ' . $lineContent[2] . ' on ' . $lineContent[3] . '</p>');
+                                                        echo ('</td>');
+                                                        echo ('</tr>');
+
+                                                        echo ('<tr id="spacer" style="height: 20px;"></tr>');
+
+                                                    }
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>
                                     </td>
                                 </tr>
                             </tbody>
