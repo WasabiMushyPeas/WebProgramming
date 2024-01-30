@@ -70,7 +70,7 @@ if (isset($_POST['post'])) {
             </tr>
             <tr>
                 <td>
-                    <form action="createPost.php" method="post">
+                    <form method="post">
                         <input type="text" name="header" id="header" placeholder="Title">
                         <br><br>
                         <textarea name="post" id="post" cols="30" rows="10"

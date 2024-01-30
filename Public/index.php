@@ -75,7 +75,7 @@ if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
                                                         echo ('</tr>');
                                                         echo ('<tr class="postFooter">');
                                                         echo ('<td>');
-                                                        echo ('<p>Posted by ' . $lineContent[2] . ' on ' . $lineContent[3] . '</p>');
+                                                        echo ('<p>Posted by: ' . $lineContent[2] . ' on ' . $lineContent[3] . '</p>');
                                                         echo ('</td>');
                                                         echo ('</tr>');
 
