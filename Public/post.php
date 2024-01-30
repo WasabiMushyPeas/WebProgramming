@@ -7,6 +7,23 @@ if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
 }
 ?>
 
+<?php
+// check to see if the user posted
+if (isset($_POST['post'])) {
+    // Write the post to a text file
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $file = fopen("./POSTS/posts.txt", "a");
+    $header = $_POST['header'];
+    $post = $_POST['post'];
+
+    // Get current date and time
+    $date = date('m/d/Y h:i:s a', time());
+
+    fwrite($file, $header . " |>|<| " . $post . " |>|<| " . $ip . "|>|<|" . $date . "\n");
+    fclose($file);
+}
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +59,7 @@ if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
             <tr>
                 <td>
                     <form action="createPost.php" method="post">
-                        <input type="text" name="post" id="header" placeholder="Title">
+                        <input type="text" name="header" id="header" placeholder="Title">
                         <br><br>
                         <textarea name="post" id="post" cols="30" rows="10"
                             placeholder="What's on your mind?"></textarea>
