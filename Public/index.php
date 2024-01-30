@@ -79,7 +79,7 @@ if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
                                                         echo ('</td>');
                                                         echo ('</tr>');
 
-                                                        echo ('<tr id="spacer" style="height: 20px;"></tr>');
+                                                        echo ('<tr id="spacer" style="height: 40px;"></tr>');
 
                                                     }
                                                 }
