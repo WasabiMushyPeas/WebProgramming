@@ -48,7 +48,7 @@ if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
                                     <a href="./index.php"><img src="./IMAGES/poster.png" width="38" height="38"></a>
                                 </td>
                                 <td>
-                                    <h1 style="transform: translateY(10px);">Poster</h1>
+                                    <h1>Poster</h1>
                                 </td>
                             </tr>
                         </tbody>
