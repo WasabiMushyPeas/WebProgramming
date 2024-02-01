@@ -8,10 +8,11 @@ session_start();
 
 // check if form checkbox is checked
 if (isset($_POST['mode'])) {
-    $_SESSION['mode'] = 'dark';
-} else {
-    // set session to light mode
-    $_SESSION['mode'] = 'light';
+    if ($_POST['mode'] == 'dark') {
+        $_SESSION['mode'] = 'dark';
+    } else {
+        $_SESSION['mode'] = 'light';
+    }
 }
 
 ?>
@@ -63,11 +64,19 @@ if (isset($_SESSION['mode']) && $_SESSION['mode'] == 'dark') {
             <tr>
                 <td>
                     <form method="post">
-                        <?php if (isset($_SESSION['mode']) && $_SESSION['mode'] == 'dark') {
-                            echo ('<input type="checkbox" name="mode" value="theme" checked> Dark Mode');
+                        <?php
+                        if (isset($_SESSION['mode']) && $_SESSION['mode'] == 'dark') {
+                            echo ('<input type="radio" name="mode" value="dark" checked> Dark Mode');
+                            echo ('<br>');
+                            echo ('<input type="radio" name="mode" value="light"> Light Mode');
+                            echo ('<br>');
                         } else {
-                            echo ('<input type="checkbox" name="mode" value="theme"> Dark Mode');
-                        } ?>
+                            echo ('<input type="radio" name="mode" value="dark"> Dark Mode');
+                            echo ('<br>');
+                            echo ('<input type="radio" name="mode" value="light" checked> Light Mode');
+                            echo ('<br>');
+                        }
+                        ?>
                         <input type="submit" value="Save">
                     </form>
                 </td>
