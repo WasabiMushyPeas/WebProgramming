@@ -86,24 +86,6 @@ if (isset($_SESSION['mode']) && $_SESSION['mode'] == 'dark') {
                 </td>
             </tr>
 
-            <tr>
-                <td>
-                    <h1>Login</h1>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <form method="post">
-                        <input type="text" name="username" placeholder="Username">
-                        <br><br>
-                        <input type="text" name="password" placeholder="Password">
-                        <br><br>
-                        <input type="submit" value="Post">
-                    </form>
-                </td>
-            </tr>
-
         </table>
     </center>
 </body>
