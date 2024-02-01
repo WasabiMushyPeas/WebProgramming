@@ -54,6 +54,7 @@ if (isset($_POST['post'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="icon" type="image/x-icon" href="./IMAGES/poster.png">
     <title>Create Post</title>
 </head>
 
@@ -70,7 +71,7 @@ if (isset($_POST['post'])) {
                                     <a href="./index.php"><img src="./IMAGES/poster.png" width="38" height="38"></a>
                                 </td>
                                 <td>
-                                    <h1 style="transform: translateY(10px);">Poster</h1>
+                                    <h1>Poster</h1>
                                 </td>
                             </tr>
                         </tbody>
