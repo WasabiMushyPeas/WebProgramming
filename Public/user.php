@@ -5,16 +5,14 @@
 if (isset($_POST['mode'])) {
 
     if ($_POST['mode']) {
-        // set cookie to dark mode
-        setcookie('mode', 'dark', time() + (86400 * 30), "/");
+        // set session to dark mode
+        $_SESSION['mode'] = 'dark';
     } else {
-        // set cookie to light mode
-        setcookie('mode', 'light', time() + (86400 * 30), "/");
+        // set session to light mode
+        $_SESSION['mode'] = 'light';
     }
     // redirect to index.php
     header('Location: index.php');
-} else {
-    setcookie('mode', 'light', time() + (86400 * 30), "/");
 }
 
 ?>

@@ -2,9 +2,25 @@
 
 <!DOCTYPE html>
 
+
+
+<?php
+// Setup Session variables
+session_start();
+if (!isset($_SESSION['username'])) {
+    $_SESSION['username'] = "Guest";
+}
+if (!isset($_SESSION['mode'])) {
+    $_SESSION['mode'] = "light";
+}
+if (!isset($_SESSION['loggedIn'])) {
+    $_SESSION['loggedIn'] = false;
+}
+?>
+
 <?php
 // check theme cookie
-if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
+if (isset($_SESSION['mode']) && $_SESSION['mode'] == 'dark') {
     echo ('<html lang="en" data-theme="dark">');
 } else {
     echo ('<html lang="en" data-theme="light">');
