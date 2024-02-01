@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 
 <?php
+session_start();
+
+
+
+
 // check if form checkbox is checked
 if (isset($_POST['mode'])) {
-
-    if ($_POST['mode']) {
-        // set session to dark mode
-        $_SESSION['mode'] = 'dark';
-    } else {
-        // set session to light mode
-        $_SESSION['mode'] = 'light';
-    }
-    // redirect to index.php
-    header('Location: index.php');
+    $_SESSION['mode'] = 'dark';
+} else {
+    // set session to light mode
+    $_SESSION['mode'] = 'light';
 }
 
 ?>
 
 <?php
 // check theme cookie
-if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
+if (isset($_SESSION['mode']) && $_SESSION['mode'] == 'dark') {
     echo ('<html lang="en" data-theme="dark">');
 } else {
     echo ('<html lang="en" data-theme="light">');
@@ -64,7 +63,7 @@ if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
             <tr>
                 <td>
                     <form method="post">
-                        <?php if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
+                        <?php if (isset($_SESSION['mode']) && $_SESSION['mode'] == 'dark') {
                             echo ('<input type="checkbox" name="mode" value="theme" checked> Dark Mode');
                         } else {
                             echo ('<input type="checkbox" name="mode" value="theme"> Dark Mode');

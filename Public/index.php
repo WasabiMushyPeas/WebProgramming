@@ -7,6 +7,7 @@
 <?php
 // Setup Session variables
 session_start();
+
 if (!isset($_SESSION['username'])) {
     $_SESSION['username'] = "Guest";
 }
