@@ -65,6 +65,12 @@ if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
                                                         // Split the line into an array
                                                         $lineContent = explode("|>|<|", $line);
 
+                                                        echo ('<tr>');
+                                                        echo ('<td class="post">');
+                                                        echo ('<table>');
+                                                        echo ('<tbody>');
+
+
                                                         // Display the post
                                                         echo ('<tr class="postHeader">');
                                                         echo ('<td>');
@@ -79,6 +85,11 @@ if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
                                                         echo ('<tr class="postFooter">');
                                                         echo ('<td>');
                                                         echo ('<p>Posted by: ' . $lineContent[2] . ' on ' . $lineContent[3] . '</p>');
+                                                        echo ('</td>');
+                                                        echo ('</tr>');
+
+                                                        echo ('</tbody>');
+                                                        echo ('</table>');
                                                         echo ('</td>');
                                                         echo ('</tr>');
 

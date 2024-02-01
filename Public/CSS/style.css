@@ -73,8 +73,9 @@ body {
 }
 
 /* Posts */
-.postHeader {
+.post {
     background-color: var(--secondary);
+    padding: 15px;
     margin: 10px;
     border-radius: 5px;
 }
