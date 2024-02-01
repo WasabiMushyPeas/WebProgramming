@@ -1,5 +1,7 @@
 <!-- Home page for users who are not logged in -->
 
+<!DOCTYPE html>
+
 <?php
 // check theme cookie
 if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
@@ -17,7 +19,7 @@ if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
     <title>Poster</title>
 </head>
 
-<body onload="onStart()">
+<body>
 
     <center>
         <!-- Main Table -->

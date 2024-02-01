@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <?php
 // check if form checkbox is checked
 if (isset($_POST['mode'])) {

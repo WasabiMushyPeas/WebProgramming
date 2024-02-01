@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <?php
 // check theme cookie
 if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'dark') {
@@ -25,7 +27,7 @@ if (isset($_POST['post'])) {
     }
 
     // Get current date and time
-    $date = date('m/d/Y h:i:s a', time());
+    $date = date('m/d/Y h:i a', time());
 
     // Generate a random ID
     $id = date('YmdHis', time()) . rand(1000, 9999);
