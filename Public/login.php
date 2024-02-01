@@ -10,6 +10,11 @@ session_start();
 
 if (isset($_POST['username']) && !empty($_POST['username'])) {
     $_SESSION['username'] = $_POST['username'];
+    $_SESSION['loggedIn'] = true;
+    header('Location: user.php');
+} else {
+    //  Alert the user to enter a username
+    echo ('<script>alert("Please enter a username")</script>');
 }
 
 ?>
