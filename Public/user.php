@@ -3,7 +3,11 @@
 <?php
 session_start();
 
-
+// If the user is not logged in, redirect to the login page
+if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) {
+    header('Location: login.php');
+    exit();
+}
 
 
 // check if form checkbox is checked
@@ -81,6 +85,10 @@ if (isset($_SESSION['mode']) && $_SESSION['mode'] == 'dark') {
                     </form>
                 </td>
             </tr>
+
+
+
+
         </table>
     </center>
 </body>
