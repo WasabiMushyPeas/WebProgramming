@@ -80,6 +80,12 @@ body {
     border-radius: 5px;
 }
 
+.infoText {
+    color: var(--text);
+    font-size: 10px;
+    text-align: right;
+}
+
 
 
 /* Create Post Button */

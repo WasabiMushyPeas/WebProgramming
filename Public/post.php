@@ -25,6 +25,7 @@ if (isset($_POST['post'])) {
     $file = fopen("./POSTS/posts.txt", "a");
     $header = $_POST['header'];
     $post = $_POST['post'];
+    $username = $_SESSION['username'];
 
     // Limit the length of the header and post
     if (strlen($header) > 100) {
@@ -43,14 +44,16 @@ if (isset($_POST['post'])) {
     // Remove newlines from the post
     $post = str_replace("\n", "", $post);
     $header = str_replace("\n", "", $header);
+    $username = str_replace("\n", "", $username);
     $post = str_replace("|>|<|", "", $post);
     $header = str_replace("|>|<|", "", $header);
+    $username = str_replace("|>|<|", "", $username);
 
     // Clean the input
     $post = htmlspecialchars($post);
     $header = htmlspecialchars($header);
 
-    fwrite($file, $header . " |>|<| " . $post . " |>|<| " . $ip . "|>|<|" . $date . "|>|<|" . $id . "\n");
+    fwrite($file, $header . " |>|<| " . $post . " |>|<| " . $username . "|>|<|" . $date . "|>|<|" . $id . "\n");
     fclose($file);
 
     // Redirect to index.php

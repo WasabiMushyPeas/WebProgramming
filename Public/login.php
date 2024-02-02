@@ -9,9 +9,18 @@
 session_start();
 
 if (isset($_POST['username']) && !empty($_POST['username'])) {
-    $_SESSION['username'] = $_POST['username'];
-    $_SESSION['loggedIn'] = true;
-    header('Location: user.php');
+    // Clean the input
+    $username = htmlspecialchars($_POST['username']);
+    if ($username == $_POST['username']) {
+        $_SESSION['username'] = $username;
+        $_SESSION['loggedIn'] = true;
+        header('Location: index.php');
+        exit();
+    } else {
+        //  Alert the user to enter a valid username
+        echo ('<script>alert("Please enter a valid username")</script>');
+    }
+
 } else {
     //  Alert the user to enter a username
     echo ('<script>alert("Please enter a username")</script>');
