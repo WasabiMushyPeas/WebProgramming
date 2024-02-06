@@ -69,7 +69,7 @@ if (isset($_SESSION['mode']) && $_SESSION['mode'] == 'dark') {
                             <tbody>
                                 <tr>
                                     <td>
-                                        <table>
+                                        <table class="postsTable">
                                             <tbody>
                                                 <?php
                                                 // Read the posts from the file
@@ -83,9 +83,9 @@ if (isset($_SESSION['mode']) && $_SESSION['mode'] == 'dark') {
                                                         // Split the line into an array
                                                         $lineContent = explode("|>|<|", $line);
 
-                                                        echo ('<tr>');
+                                                        echo ('<tr class="postTable">');
                                                         echo ('<td class="post">');
-                                                        echo ('<table class="postTable">');
+                                                        echo ('<table>');
                                                         echo ('<tbody>');
 
 

@@ -90,6 +90,13 @@ body {
     width: 100%;
 }
 
+.postsTable {
+    width: 100%;
+}
+
+#posts {
+    width: 100%;
+}
 
 
 /* Create Post Button */

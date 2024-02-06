@@ -21,7 +21,7 @@ if (isset($_POST['username']) && !empty($_POST['username'])) {
         echo ('<script>alert("Please enter a valid username")</script>');
     }
 
-} else {
+} else if (isset($_POST['username']) && empty($_POST['username'])) {
     //  Alert the user to enter a username
     echo ('<script>alert("Please enter a username")</script>');
 }
