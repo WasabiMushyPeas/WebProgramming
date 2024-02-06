@@ -41,6 +41,7 @@ h2 {
 p {
     font-family: 'Poppins', sans-serif;
     color: var(--text);
+    line-break: anywhere;
 }
 
 body {
