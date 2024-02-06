@@ -86,6 +86,10 @@ body {
     text-align: right;
 }
 
+.postTable {
+    width: 100%;
+}
+
 
 
 /* Create Post Button */

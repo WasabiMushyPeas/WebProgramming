@@ -85,7 +85,7 @@ if (isset($_SESSION['mode']) && $_SESSION['mode'] == 'dark') {
 
                                                         echo ('<tr>');
                                                         echo ('<td class="post">');
-                                                        echo ('<table>');
+                                                        echo ('<table class="postTable">');
                                                         echo ('<tbody>');
 
 
