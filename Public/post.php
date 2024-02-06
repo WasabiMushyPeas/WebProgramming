@@ -31,8 +31,8 @@ if (isset($_POST['post'])) {
     if (strlen($header) > 100) {
         $header = substr($header, 0, 100);
     }
-    if (strlen($post) > 10000) {
-        $post = substr($post, 0, 10000);
+    if (strlen($post) > 1000) {
+        $post = substr($post, 0, 1000);
     }
 
     // Get current date and time
