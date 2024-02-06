@@ -101,7 +101,7 @@ if (isset($_SESSION['mode']) && $_SESSION['mode'] == 'dark') {
                                                         echo ('</td>');
                                                         echo ('</tr>');
                                                         echo ('<tr class="postFooter">');
-                                                        echo ('<td>');
+                                                        echo ('<td class="postFooter">');
                                                         echo ('<p>Posted by: ' . $lineContent[2] . '</p>');
                                                         echo ('<p class="infoText">' . $lineContent[3] . '</p>');
                                                         echo ('</td>');
