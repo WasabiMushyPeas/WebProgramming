@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <?php
 session_start();
 
@@ -60,6 +58,8 @@ if (isset($_POST['post'])) {
     header('Location: index.php');
 }
 ?>
+
+<!DOCTYPE html>
 
 <head>
     <meta charset="UTF-8">
