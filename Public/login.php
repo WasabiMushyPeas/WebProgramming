@@ -19,38 +19,58 @@ function consoleLog($data)
 $serverName = "localhost";
 $serverUsername = "Jack";
 $serverPassword = "";
+$conn;
+
 
 // Create connection
-$conn = new mysqli($serverName, $serverUsername, $serverPassword);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-echo ("Connected successfully");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function checkUser($fUsername, $fPassword)
+function connect($serverName, $serverUsername, $serverPassword)
 {
+    $conn = new mysqli($serverName, $serverUsername, $serverPassword);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    echo ("Connected successfully");
+}
 
-
+// Create the database
+function createDatabase($conn)
+{
+    $sql = "CREATE DATABASE Poster";
+    if ($conn->query($sql) === TRUE) {
+        echo "Database created successfully";
+    } else {
+        echo "Error creating database: " . $conn->error;
+    }
 }
 
 
+// Create the table
+function createTable($conn)
+{
+    $sql = "CREATE TABLE Users (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(30) NOT NULL,
+    password VARCHAR(30) NOT NULL,
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    )";
+    if ($conn->query($sql) === TRUE) {
+        echo "Table Users created successfully";
+    } else {
+        echo "Error creating table: " . $conn->error;
+    }
+}
 
+// insert data into table
+function insertData($conn, $username, $password)
+{
+    $sql = "INSERT INTO Users (username, password)
+    VALUES ('$username', '$password')";
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
 
 
 
