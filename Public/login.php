@@ -4,6 +4,63 @@
 // Setup Session variables
 session_start();
 
+// Log to the console
+function consoleLog($data)
+{
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('PHP Debug: " . $output . "' );</script>";
+}
+
+
+// Connect to the database
+$serverName = "localhost";
+$serverUsername = "Jack";
+$serverPassword = "";
+
+// Create connection
+$conn = new mysqli($serverName, $serverUsername, $serverPassword);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo ("Connected successfully");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function checkUser($fUsername, $fPassword)
+{
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 if (isset($_POST['username']) && !empty($_POST['username'])) {
     // Clean the input
     $username = htmlspecialchars($_POST['username']);
