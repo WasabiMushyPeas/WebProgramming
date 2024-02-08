@@ -1,8 +1,5 @@
 <!-- Home page for users who are not logged in -->
 
-<!DOCTYPE html>
-
-
 
 <?php
 // Setup Session variables
@@ -27,6 +24,8 @@ if (isset($_SESSION['mode']) && $_SESSION['mode'] == 'dark') {
     echo ('<html lang="en" data-theme="light">');
 }
 ?>
+
+<!DOCTYPE html>
 
 <head>
     <meta charset="UTF-8">
