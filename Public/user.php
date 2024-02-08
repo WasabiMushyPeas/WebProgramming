@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <?php
 session_start();
 
@@ -29,6 +27,8 @@ if (isset($_SESSION['mode']) && $_SESSION['mode'] == 'dark') {
     echo ('<html lang="en" data-theme="light">');
 }
 ?>
+
+<!DOCTYPE html>
 
 <head>
     <meta charset="UTF-8">
