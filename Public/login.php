@@ -101,14 +101,7 @@ if (isset($_POST['username']) && !empty($_POST['username'])) {
 
 ?>
 
-<?php
-// check theme cookie
-if (isset($_SESSION['mode']) && $_SESSION['mode'] == 'dark') {
-    echo ('<html lang="en" data-theme="dark">');
-} else {
-    echo ('<html lang="en" data-theme="light">');
-}
-?>
+<?php include 'theme.php'; ?>
 
 
 
