@@ -15,8 +15,6 @@ function consoleLog($data)
 }
 
 
-
-
 if (isset($_POST['username']) && !empty($_POST['username'])) {
     // Clean the input
     $username = htmlspecialchars($_POST['username']);
@@ -53,19 +51,16 @@ if (isset($_POST['username']) && !empty($_POST['username'])) {
 </head>
 
 <body>
-
     <center>
         <!-- Main Table -->
         <table id="mainTable">
             <tbody>
                 <?php include 'header.php'; ?>
-
                 <tr>
                     <td>
                         <h1>Login</h1>
                     </td>
                 </tr>
-
                 <tr>
                     <td>
                         <form method="post">
@@ -77,11 +72,9 @@ if (isset($_POST['username']) && !empty($_POST['username'])) {
                         </form>
                     </td>
                 </tr>
-
             </tbody>
         </table>
     </center>
-
 </body>
 
 </html>

@@ -34,10 +34,7 @@ if (isset($_POST['mode'])) {
 <body>
     <center>
         <table id="mainTable">
-
             <?php include 'header.php'; ?>
-
-
             <tr>
                 <td>
                     <h1>User Settings</h1>
@@ -63,7 +60,6 @@ if (isset($_POST['mode'])) {
                     </form>
                 </td>
             </tr>
-
         </table>
     </center>
 </body>
