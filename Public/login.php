@@ -15,6 +15,22 @@ function consoleLog($data)
 }
 
 
+$dataBaseConnection = mysqli_connect('localhost', 'Jack', 'pass1234', 'poster');
+// Check the connection
+if (!$dataBaseConnection) {
+    consoleLog('Connection error: ' . mysqli_connect_error());
+    die('Connection error: ' . mysqli_connect_error());
+}
+
+
+
+
+
+
+
+
+
+
 if (isset($_POST['username']) && !empty($_POST['username'])) {
     // Clean the input
     $username = htmlspecialchars($_POST['username']);
