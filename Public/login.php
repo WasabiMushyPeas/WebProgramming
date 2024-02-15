@@ -3,45 +3,17 @@
 <?php
 // Setup Session variables
 session_start();
-
-// Log to the console
-function consoleLog($data)
-{
-    $output = $data;
-    if (is_array($output))
-        $output = implode(',', $output);
-
-    echo "<script>console.log('PHP Debug: " . $output . "' );</script>";
-}
-
-
-
-
-
-
-// --------------------------------- Database ---------------------------------
 require 'database.php';
 
-$databaseConnection = connectToDataBase();
-
-
-$user = findUser('Jackson', $databaseConnection);
-consoleLog($user['username']);
-
-
-
-
-
-
-
+// --------------------------------- User Login ---------------------------------
+$tempUsername;
+$tempPassword;
 
 if (isset($_POST['username']) && !empty($_POST['username'])) {
-    // Clean the input
+    // Check to see if input is clean
     $username = htmlspecialchars($_POST['username']);
     if ($username == $_POST['username']) {
-        $_SESSION['username'] = $username;
-        $_SESSION['loggedIn'] = true;
-        header('Location: index.php');
+        $tempUsername = $username;
         exit();
     } else {
         //  Alert the user to enter a valid username
@@ -52,6 +24,74 @@ if (isset($_POST['username']) && !empty($_POST['username'])) {
     //  Alert the user to enter a username
     echo ('<script>alert("Please enter a username")</script>');
 }
+
+if (isset($_POST['password']) && !empty($_POST['password'])) {
+    // Check to see if input is clean
+    $password = htmlspecialchars($_POST['password']);
+    if ($password == $_POST['password']) {
+        $tempPassword = $password;
+        exit();
+    } else {
+        //  Alert the user to enter a valid password
+        echo ('<script>alert("Please enter a valid password")</script>');
+    }
+
+} else if (isset($_POST['password']) && empty($_POST['password'])) {
+    //  Alert the user to enter a password
+    echo ('<script>alert("Please enter a password")</script>');
+}
+
+
+
+
+// --------------------------------- Database ---------------------------------
+
+$databaseConnection = connectToDataBase();
+
+if ($tempPassword && $tempUsername) {
+    if (doesUserExist($tempUsername, $databaseConnection)) {
+        $user = findUserByName($tempUsername, $databaseConnection);
+        if ($user['password'] == $tempPassword) {
+            $_SESSION['username'] = $tempUsername;
+            $_SESSION['loggedIn'] = true;
+            header('Location: index.php');
+            exit();
+        } else {
+            echo ('<script>alert("Incorrect password")</script>');
+        }
+    } else {
+        createUser('1234', $tempUsername, $tempPassword, $tempUsername, $databaseConnection);
+    }
+}
+
+
+$user = findUserByName('Jackson', $databaseConnection);
+consoleLog($user['username']);
+
+
+
+
+
+
+
+
+// if (isset($_POST['username']) && !empty($_POST['username'])) {
+//     // Clean the input
+//     $username = htmlspecialchars($_POST['username']);
+//     if ($username == $_POST['username']) {
+//         $_SESSION['username'] = $username;
+//         $_SESSION['loggedIn'] = true;
+//         header('Location: index.php');
+//         exit();
+//     } else {
+//         //  Alert the user to enter a valid username
+//         echo ('<script>alert("Please enter a valid username")</script>');
+//     }
+
+// } else if (isset($_POST['username']) && empty($_POST['username'])) {
+//     //  Alert the user to enter a username
+//     echo ('<script>alert("Please enter a username")</script>');
+// }
 
 ?>
 
