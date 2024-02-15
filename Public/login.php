@@ -4,23 +4,7 @@
 // Setup Session variables
 session_start();
 
-// Log to the console
-function consoleLog($data)
-{
-    $output = $data;
-    if (is_array($output))
-        $output = implode(',', $output);
-
-    echo "<script>console.log('PHP Debug: " . $output . "' );</script>";
-}
-
-
-$dataBaseConnection = mysqli_connect('localhost', 'Jack', 'pass1234', 'poster');
-// Check the connection
-if (!$dataBaseConnection) {
-    consoleLog('Connection error: ' . mysqli_connect_error());
-    die('Connection error: ' . mysqli_connect_error());
-}
+require 'database.php';
 
 
 

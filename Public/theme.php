@@ -5,4 +5,3 @@ if (isset($_SESSION['mode']) && $_SESSION['mode'] == 'dark') {
 } else {
     echo ('<html lang="en" data-theme="light">');
 }
-?>
