@@ -1,13 +1,13 @@
 <?php
 // Log to the console
-function consoleLog($data)
-{
-    $output = $data;
-    if (is_array($output))
-        $output = implode(',', $output);
+// function consoleLog($data)
+// {
+//     $output = $data;
+//     if (is_array($output))
+//         $output = implode(',', $output);
 
-    echo "<script>console.log('PHP Debug: " . $output . "' );</script>";
-}
+//     echo "<script>console.log('PHP Debug: " . $output . "' );</script>";
+// }
 
 // --------------------------------- Database Functions ---------------------------------
 function findUser($username, $dataBaseConnection)
@@ -21,10 +21,13 @@ function findUser($username, $dataBaseConnection)
 
 // --------------------------------- Database ---------------------------------
 
-
-$dataBaseConnection = mysqli_connect('localhost', 'Jack', 'pass1234', 'poster');
-// Check the connection
-if (!$dataBaseConnection) {
-    consoleLog('Connection error: ' . mysqli_connect_error());
-    die('Connection error: ' . mysqli_connect_error());
+function connectToDataBase()
+{
+    $dataBaseConnection = mysqli_connect('localhost', 'Jack', 'pass1234', 'poster');
+    // Check the connection
+    if (!$dataBaseConnection) {
+        consoleLog('Connection error: ' . mysqli_connect_error());
+        die('Connection error: ' . mysqli_connect_error());
+    }
+    return $dataBaseConnection;
 }

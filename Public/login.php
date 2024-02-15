@@ -4,9 +4,29 @@
 // Setup Session variables
 session_start();
 
+// Log to the console
+function consoleLog($data)
+{
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('PHP Debug: " . $output . "' );</script>";
+}
+
+
+
+
+
+
+// --------------------------------- Database ---------------------------------
 require 'database.php';
 
+$databaseConnection = connectToDataBase();
 
+
+$user = findUser('Jackson', $databaseConnection);
+consoleLog($user['username']);
 
 
 
