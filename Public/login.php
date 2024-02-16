@@ -65,33 +65,10 @@ if ($tempPassword && $tempUsername) {
 }
 
 
-$user = findUserByName('Jackson', $databaseConnection);
-consoleLog($user['username']);
+// $user = findUserByName('Jackson', $databaseConnection);
+// consoleLog($user['username']);
 
 
-
-
-
-
-
-
-// if (isset($_POST['username']) && !empty($_POST['username'])) {
-//     // Clean the input
-//     $username = htmlspecialchars($_POST['username']);
-//     if ($username == $_POST['username']) {
-//         $_SESSION['username'] = $username;
-//         $_SESSION['loggedIn'] = true;
-//         header('Location: index.php');
-//         exit();
-//     } else {
-//         //  Alert the user to enter a valid username
-//         echo ('<script>alert("Please enter a valid username")</script>');
-//     }
-
-// } else if (isset($_POST['username']) && empty($_POST['username'])) {
-//     //  Alert the user to enter a username
-//     echo ('<script>alert("Please enter a username")</script>');
-// }
 
 ?>
 
