@@ -38,6 +38,66 @@ function createUser($userid, $username, $password, $nickname, $dataBaseConnectio
     } else {
         consoleLog("Error: " . $sql . "<br>" . mysqli_error($dataBaseConnection));
     }
+    $sql = "INSERT INTO userSettings (userid, theme, postits, banned) VALUES ('$userid', 'light', '0', '0')";
+    if (mysqli_query($dataBaseConnection, $sql)) {
+        consoleLog("New record created successfully");
+    } else {
+        consoleLog("Error: " . $sql . "<br>" . mysqli_error($dataBaseConnection));
+    }
+}
+
+function getUserTheme($username, $dataBaseConnection)
+{
+    $sql = "SELECT * FROM userSettings WHERE userid = (SELECT userid FROM users WHERE username = '$username')";
+    $result = mysqli_query($dataBaseConnection, $sql);
+    $userSettings = mysqli_fetch_assoc($result);
+    return $userSettings['theme'];
+}
+
+function setUserTheme($username, $theme, $dataBaseConnection)
+{
+    $sql = "UPDATE userSettings SET theme = '$theme' WHERE userid = (SELECT userid FROM users WHERE username = '$username')";
+    if (mysqli_query($dataBaseConnection, $sql)) {
+        consoleLog("Record updated successfully");
+    } else {
+        consoleLog("Error: " . $sql . "<br>" . mysqli_error($dataBaseConnection));
+    }
+}
+
+function getUserPostits($username, $dataBaseConnection)
+{
+    $sql = "SELECT * FROM userSettings WHERE userid = (SELECT userid FROM users WHERE username = '$username')";
+    $result = mysqli_query($dataBaseConnection, $sql);
+    $userSettings = mysqli_fetch_assoc($result);
+    return $userSettings['postits'];
+}
+
+function setUserPostits($username, $postits, $dataBaseConnection)
+{
+    $sql = "UPDATE userSettings SET postits = '$postits' WHERE userid = (SELECT userid FROM users WHERE username = '$username')";
+    if (mysqli_query($dataBaseConnection, $sql)) {
+        consoleLog("Record updated successfully");
+    } else {
+        consoleLog("Error: " . $sql . "<br>" . mysqli_error($dataBaseConnection));
+    }
+}
+
+function getUserBanned($username, $dataBaseConnection)
+{
+    $sql = "SELECT * FROM userSettings WHERE userid = (SELECT userid FROM users WHERE username = '$username')";
+    $result = mysqli_query($dataBaseConnection, $sql);
+    $userSettings = mysqli_fetch_assoc($result);
+    return $userSettings['banned'];
+}
+
+function setUserBanned($username, $banned, $dataBaseConnection)
+{
+    $sql = "UPDATE userSettings SET banned = '$banned' WHERE userid = (SELECT userid FROM users WHERE username = '$username')";
+    if (mysqli_query($dataBaseConnection, $sql)) {
+        consoleLog("Record updated successfully");
+    } else {
+        consoleLog("Error: " . $sql . "<br>" . mysqli_error($dataBaseConnection));
+    }
 }
 
 
