@@ -47,11 +47,7 @@ $tempPassword;
 // --------------------------------- Database ---------------------------------
 
 $databaseConnection = connectToDatabase();
-if ($databaseConnection) {
-    consoleLog("Connected to the database");
-} else {
-    consoleLog("Failed to connect to the database");
-}
+
 
 
 

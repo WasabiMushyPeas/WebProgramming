@@ -73,6 +73,15 @@ function setUserTheme($username, $theme, $dataBaseConnection)
     }
 }
 
+function echoTheme($username, $dataBaseConnection)
+{
+    if (getUserTheme($username, $dataBaseConnection) == 1) {
+        echo ('<html lang="en" data-theme="dark">');
+    } else {
+        echo ('<html lang="en" data-theme="light">');
+    }
+}
+
 function getUserPostits($username, $dataBaseConnection)
 {
     $sql = "SELECT * FROM userSettings WHERE userid = (SELECT userid FROM users WHERE username = '$username')";
