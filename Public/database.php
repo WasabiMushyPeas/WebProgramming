@@ -9,6 +9,14 @@ function consoleLog($data)
     echo "<script>console.log('PHP Debug: " . $output . "' );</script>";
 }
 
+// --------------------------------- Database Hash and Salt ---------------------------------
+function hashPassword($password)
+{
+    $salt = 'TfwGlrTWSC';
+    $hashedPassword = hash('sha256', $password . $salt);
+    return $hashedPassword;
+}
+
 // --------------------------------- Database User Functions ---------------------------------
 function findUserByName($username, $dataBaseConnection)
 {
@@ -32,6 +40,7 @@ function doesUserExist($username, $dataBaseConnection)
 
 function createUser($userid, $username, $password, $nickname, $dataBaseConnection)
 {
+    $password = hashPassword($password);
     $sql = "INSERT INTO users (userid, username, password, nickname) VALUES ('$userid', '$username', '$password', '$nickname')";
     if (mysqli_query($dataBaseConnection, $sql)) {
         consoleLog("New record created successfully");
@@ -98,6 +107,21 @@ function setUserBanned($username, $banned, $dataBaseConnection)
     } else {
         consoleLog("Error: " . $sql . "<br>" . mysqli_error($dataBaseConnection));
     }
+}
+
+function loginUser($username, $password, $dataBaseConnection)
+{
+    if (doesUserExist($username, $dataBaseConnection) == false) {
+        return false;
+    } else {
+        $user = findUserByName($username, $dataBaseConnection);
+        if ($user['password'] == hashPassword($password)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
 
 
