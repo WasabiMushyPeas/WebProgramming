@@ -9,7 +9,7 @@ function consoleLog($data)
     echo "<script>console.log('PHP Debug: " . $output . "' );</script>";
 }
 
-// --------------------------------- Database Functions ---------------------------------
+// --------------------------------- Database User Functions ---------------------------------
 function findUserByName($username, $dataBaseConnection)
 {
     $sql = "SELECT * FROM users WHERE username = '$username'";
@@ -99,6 +99,64 @@ function setUserBanned($username, $banned, $dataBaseConnection)
         consoleLog("Error: " . $sql . "<br>" . mysqli_error($dataBaseConnection));
     }
 }
+
+
+// --------------------------------- Database Post Functions ---------------------------------
+function createPost($userid, $postid, $title, $body, $dataBaseConnection)
+{
+    $sql = "INSERT INTO posts (userid, postid, title, body, upvotes, downvotes, date) VALUES ('$userid', '$postid', '$title', '$body', '0', '0', now())";
+    if (mysqli_query($dataBaseConnection, $sql)) {
+        consoleLog("New record created successfully");
+    } else {
+        consoleLog("Error: " . $sql . "<br>" . mysqli_error($dataBaseConnection));
+    }
+}
+
+function getPost($postid, $dataBaseConnection)
+{
+    $sql = "SELECT * FROM posts WHERE postid = '$postid'";
+    $result = mysqli_query($dataBaseConnection, $sql);
+    $post = mysqli_fetch_assoc($result);
+    return $post;
+}
+
+function getPostsFromUser($userid, $dataBaseConnection)
+{
+    $sql = "SELECT * FROM posts WHERE userid = '$userid'";
+    $result = mysqli_query($dataBaseConnection, $sql);
+    $posts = mysqli_fetch_assoc($result);
+    return $posts;
+}
+
+function getPosts($dataBaseConnection)
+{
+    $sql = "SELECT * FROM posts";
+    $result = mysqli_query($dataBaseConnection, $sql);
+    $posts = mysqli_fetch_assoc($result);
+    return $posts;
+}
+
+
+function setPostUpvotes($postid, $upvotes, $dataBaseConnection)
+{
+    $sql = "UPDATE posts SET upvotes = '$upvotes' WHERE postid = '$postid'";
+    if (mysqli_query($dataBaseConnection, $sql)) {
+        consoleLog("Record updated successfully");
+    } else {
+        consoleLog("Error: " . $sql . "<br>" . mysqli_error($dataBaseConnection));
+    }
+}
+
+function setPostDownvotes($postid, $downvotes, $dataBaseConnection)
+{
+    $sql = "UPDATE posts SET downvotes = '$downvotes' WHERE postid = '$postid'";
+    if (mysqli_query($dataBaseConnection, $sql)) {
+        consoleLog("Record updated successfully");
+    } else {
+        consoleLog("Error: " . $sql . "<br>" . mysqli_error($dataBaseConnection));
+    }
+}
+
 
 
 // --------------------------------- Database ---------------------------------
