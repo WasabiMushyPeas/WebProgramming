@@ -9,60 +9,82 @@ require 'database.php';
 $tempUsername;
 $tempPassword;
 
-if (isset($_POST['username']) && !empty($_POST['username'])) {
-    // Check to see if input is clean
-    $username = htmlspecialchars($_POST['username']);
-    if ($username == $_POST['username']) {
-        $tempUsername = $username;
-        exit();
-    } else {
-        //  Alert the user to enter a valid username
-        echo ('<script>alert("Please enter a valid username")</script>');
-    }
+// if (isset($_POST['username']) && !empty($_POST['username'])) {
+//     // Check to see if input is clean
+//     $username = htmlspecialchars($_POST['username']);
+//     if ($username == $_POST['username']) {
+//         $tempUsername = $username;
+//         exit();
+//     } else {
+//         //  Alert the user to enter a valid username
+//         echo ('<script>alert("Please enter a valid username")</script>');
+//     }
 
-} else if (isset($_POST['username']) && empty($_POST['username'])) {
-    //  Alert the user to enter a username
-    echo ('<script>alert("Please enter a username")</script>');
-}
+// } else if (isset($_POST['username']) && empty($_POST['username'])) {
+//     //  Alert the user to enter a username
+//     echo ('<script>alert("Please enter a username")</script>');
+// }
 
-if (isset($_POST['password']) && !empty($_POST['password'])) {
-    // Check to see if input is clean
-    $password = htmlspecialchars($_POST['password']);
-    if ($password == $_POST['password']) {
-        $tempPassword = $password;
-        exit();
-    } else {
-        //  Alert the user to enter a valid password
-        echo ('<script>alert("Please enter a valid password")</script>');
-    }
+// if (isset($_POST['password']) && !empty($_POST['password'])) {
+//     // Check to see if input is clean
+//     $password = htmlspecialchars($_POST['password']);
+//     if ($password == $_POST['password']) {
+//         $tempPassword = $password;
+//         exit();
+//     } else {
+//         //  Alert the user to enter a valid password
+//         echo ('<script>alert("Please enter a valid password")</script>');
+//     }
 
-} else if (isset($_POST['password']) && empty($_POST['password'])) {
-    //  Alert the user to enter a password
-    echo ('<script>alert("Please enter a password")</script>');
-}
+// } else if (isset($_POST['password']) && empty($_POST['password'])) {
+//     //  Alert the user to enter a password
+//     echo ('<script>alert("Please enter a password")</script>');
+// }
 
 
 
 
 // --------------------------------- Database ---------------------------------
 
-$databaseConnection = connectToDataBase();
+$databaseConnection = connectToDatabase();
+if ($databaseConnection) {
+    consoleLog("Connected to the database");
+} else {
+    consoleLog("Failed to connect to the database");
+}
 
-if ($tempPassword && $tempUsername) {
-    if (doesUserExist($tempUsername, $databaseConnection)) {
-        $user = findUserByName($tempUsername, $databaseConnection);
-        if ($user['password'] == $tempPassword) {
-            $_SESSION['username'] = $tempUsername;
+
+
+// --------------------------------- User Login ---------------------------------
+if (isset($_POST['username']) && isset($_POST['password'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    // clean input
+    $tempUsername = htmlspecialchars($username);
+    $tempPassword = htmlspecialchars($password);
+
+    consoleLog("Hashed password: " . hashPassword($password));
+    if ($tempUsername == $username && $tempPassword == $password) {
+        if (loginUser($username, $password, $databaseConnection)) {
             $_SESSION['loggedIn'] = true;
+            $_SESSION['username'] = $username;
             header('Location: index.php');
             exit();
         } else {
-            echo ('<script>alert("Incorrect password")</script>');
+            consoleLog("Invalid username or password or user does not exist");
         }
     } else {
-        createUser('1234', $tempUsername, $tempPassword, $tempUsername, $databaseConnection);
+        consoleLog("Username and password are not clean");
+    }
+
+    if (!doesUserExist($username, $databaseConnection)) {
+        createUser(uniqid(), $username, $password, $username, $databaseConnection);
     }
 }
+
+
+
+
 
 
 // $user = findUserByName('Jackson', $databaseConnection);
