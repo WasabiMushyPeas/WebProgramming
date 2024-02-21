@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Log to the console
 function consoleLog($data)
 {

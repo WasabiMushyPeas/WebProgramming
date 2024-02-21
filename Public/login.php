@@ -86,11 +86,11 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 // $user = findUserByName('Jackson', $databaseConnection);
 // consoleLog($user['username']);
 
-
+echoTheme($_SESSION['username'], $databaseConnection);
 
 ?>
 
-<?php include 'theme.php'; ?>
+
 
 
 
