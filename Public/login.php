@@ -79,7 +79,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     }
 
     if (!doesUserExist($username, $databaseConnection)) {
-        createUser(howManyUsers($databaseConnection), $username, $password, $username, $databaseConnection);
+        $id = howManyUsers($databaseConnection) + 1;
+        createUser($id, $username, $password, $username, $databaseConnection);
         if (loginUser($username, $password, $databaseConnection)) {
             $_SESSION['loggedIn'] = true;
             $_SESSION['username'] = $username;
