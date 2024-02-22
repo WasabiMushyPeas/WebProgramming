@@ -58,12 +58,17 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     // clean input
     $tempUsername = htmlspecialchars($username);
     $tempPassword = htmlspecialchars($password);
+    // Clean input for sql injection
+    $tempUsername = mysqli_real_escape_string($databaseConnection, $tempUsername);
+    $tempPassword = mysqli_real_escape_string($databaseConnection, $tempPassword);
 
     consoleLog("Hashed password: " . hashPassword($password));
     if ($tempUsername == $username && $tempPassword == $password) {
         if (loginUser($username, $password, $databaseConnection)) {
             $_SESSION['loggedIn'] = true;
             $_SESSION['username'] = $username;
+            $_SESSION['userid'] = getUserId($username, $databaseConnection);
+            setSessionTheme($tempUsername, $databaseConnection);
             header('Location: index.php');
             exit();
         } else {
@@ -75,6 +80,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
     if (!doesUserExist($username, $databaseConnection)) {
         createUser(uniqid(), $username, $password, $username, $databaseConnection);
+        header('Location: login.php');
     }
 }
 
@@ -86,7 +92,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 // $user = findUserByName('Jackson', $databaseConnection);
 // consoleLog($user['username']);
 
-echoTheme($_SESSION['username'], $databaseConnection);
+
 
 ?>
 

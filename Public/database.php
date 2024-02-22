@@ -10,6 +10,15 @@ function consoleLog($data)
     echo "<script>console.log('PHP Debug: " . $output . "' );</script>";
 }
 
+function consoleLogArray($data)
+{
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('PHP Debug: " . $output . "' );</script>";
+}
+
 // --------------------------------- Database Hash and Salt ---------------------------------
 function hashPassword($password)
 {
@@ -74,12 +83,13 @@ function setUserTheme($username, $theme, $dataBaseConnection)
     }
 }
 
-function echoTheme($username, $dataBaseConnection)
+function setSessionTheme($username, $dataBaseConnection)
 {
-    if (getUserTheme($username, $dataBaseConnection) == 1) {
-        echo ('<html lang="en" data-theme="dark">');
+    $theme = getUserTheme($username, $dataBaseConnection);
+    if ($theme == 1) {
+        $_SESSION['mode'] = 'dark';
     } else {
-        echo ('<html lang="en" data-theme="light">');
+        $_SESSION['mode'] = 'light';
     }
 }
 
@@ -134,11 +144,27 @@ function loginUser($username, $password, $dataBaseConnection)
 
 }
 
+function getUserId($username, $dataBaseConnection)
+{
+    $sql = "SELECT userid FROM users WHERE username = '$username'";
+    $result = mysqli_query($dataBaseConnection, $sql);
+    $user = mysqli_fetch_assoc($result);
+    return $user['userid'];
+}
+
+function getUsername($userid, $dataBaseConnection)
+{
+    $sql = "SELECT username FROM users WHERE userid = '$userid'";
+    $result = mysqli_query($dataBaseConnection, $sql);
+    $user = mysqli_fetch_assoc($result);
+    return $user['username'];
+}
+
 
 // --------------------------------- Database Post Functions ---------------------------------
-function createPost($userid, $postid, $title, $body, $dataBaseConnection)
+function createPost($userid, $postid, $title, $body, $date, $dataBaseConnection)
 {
-    $sql = "INSERT INTO posts (userid, postid, title, body, upvotes, downvotes, date) VALUES ('$userid', '$postid', '$title', '$body', '0', '0', now())";
+    $sql = "INSERT INTO posts (userid, postid, title, body, upvotes, downvotes, date) VALUES ('$userid', '$postid', '$title', '$body', '0', '0', '$date')";
     if (mysqli_query($dataBaseConnection, $sql)) {
         consoleLog("New record created successfully");
     } else {
@@ -166,7 +192,7 @@ function getPosts($dataBaseConnection)
 {
     $sql = "SELECT * FROM posts";
     $result = mysqli_query($dataBaseConnection, $sql);
-    $posts = mysqli_fetch_assoc($result);
+    $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $posts;
 }
 

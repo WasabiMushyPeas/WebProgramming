@@ -1,5 +1,6 @@
 <?php
 session_start();
+@require 'database.php';
 
 // If the user is not logged in, redirect to the login page
 if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) {
@@ -13,9 +14,11 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) {
 <?php
 // check to see if the user posted
 if (isset($_POST['post'])) {
+
+    $databaseConnection = connectToDatabase();
+
     // Write the post to a text file
     $ip = $_SERVER['REMOTE_ADDR'];
-    $file = fopen("./POSTS/posts.txt", "a");
     $header = $_POST['header'];
     $post = $_POST['post'];
     $username = $_SESSION['username'];
@@ -28,26 +31,20 @@ if (isset($_POST['post'])) {
         $post = substr($post, 0, 1000);
     }
 
-    // Get current date and time
-    $date = date('m/d/Y h:i a', time());
+    // Get current date and time year-month-day
+    $date = date("Y-m-d");
 
-    // Generate a random ID
-    $id = date('YmdHis', time()) . rand(1000, 9999);
-
-    // Remove newlines from the post
-    $post = str_replace("\n", "", $post);
-    $header = str_replace("\n", "", $header);
-    $username = str_replace("\n", "", $username);
-    $post = str_replace("|>|<|", "", $post);
-    $header = str_replace("|>|<|", "", $header);
-    $username = str_replace("|>|<|", "", $username);
+    // Generate Unique ID
+    $id = uniqid();
 
     // Clean the input
     $post = htmlspecialchars($post);
     $header = htmlspecialchars($header);
+    // Clean input for sql injection
+    $header = mysqli_real_escape_string($databaseConnection, $header);
+    $post = mysqli_real_escape_string($databaseConnection, $post);
 
-    fwrite($file, $header . " |>|<| " . $post . " |>|<| " . $username . "|>|<|" . $date . "|>|<|" . $id . "\n");
-    fclose($file);
+    createPost($_SESSION['userid'], $id, $header, $post, $date, $databaseConnection);
 
     // Redirect to index.php
     header('Location: index.php');
