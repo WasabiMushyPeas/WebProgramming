@@ -160,6 +160,14 @@ function getUsername($userid, $dataBaseConnection)
     return $user['username'];
 }
 
+function howManyUsers($dataBaseConnection)
+{
+    $sql = "SELECT * FROM users";
+    $result = mysqli_query($dataBaseConnection, $sql);
+    $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return count($users);
+}
+
 
 // --------------------------------- Database Post Functions ---------------------------------
 function createPost($userid, $postid, $title, $body, $date, $dataBaseConnection)

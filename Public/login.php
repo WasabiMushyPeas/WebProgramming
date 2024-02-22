@@ -79,7 +79,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     }
 
     if (!doesUserExist($username, $databaseConnection)) {
-        createUser(uniqid(), $username, $password, $username, $databaseConnection);
+        createUser(howManyUsers($databaseConnection), $username, $password, $username, $databaseConnection);
         if (loginUser($username, $password, $databaseConnection)) {
             $_SESSION['loggedIn'] = true;
             $_SESSION['username'] = $username;
@@ -94,12 +94,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 }
 
 
-
-
-
-
-// $user = findUserByName('Jackson', $databaseConnection);
-// consoleLog($user['username']);
 
 
 
