@@ -102,45 +102,40 @@ if (!isset($_SESSION['loggedIn'])) {
                                                 $databaseConnection = connectToDatabase();
                                                 $posts = getPosts($databaseConnection);
 
-                                                // consoleLogArray($posts);
-                                                // consoleLog(count($posts));
-                                                // consoleLog($posts[0]['title']);
-                                                // consoleLog($posts[0]['body']);
-                                                // consoleLog($posts[0]['userid']);
-                                                // consoleLog($posts[0]['date']);
-                                                
+                                                if (count($posts) > 0) {
+                                                    for ($i = 0; $i < count($posts); $i++) {
+                                                        echo ('<tr class="postTable">');
+                                                        echo ('<td class="post">');
+                                                        echo ('<table style="width: 100%;">');
+                                                        echo ('<tbody style="width: 100%;">');
 
-                                                for ($i = 0; $i < count($posts); $i++) {
-                                                    echo ('<tr class="postTable">');
-                                                    echo ('<td class="post">');
-                                                    echo ('<table style="width: 100%;">');
-                                                    echo ('<tbody style="width: 100%;">');
+                                                        // Display the post
+                                                        echo ('<tr class="postHeader">');
+                                                        echo ('<td>');
+                                                        echo ('<h2>' . $posts[$i]['title'] . '</h2>');
+                                                        echo ('</td>');
+                                                        echo ('</tr>');
+                                                        echo ('<tr class="postContent">');
+                                                        echo ('<td>');
+                                                        echo ('<p>' . $posts[$i]['body'] . '</p>');
+                                                        echo ('</td>');
+                                                        echo ('</tr>');
+                                                        echo ('<tr class="postFooter">');
+                                                        echo ('<td class="postFooter">');
+                                                        echo ('<p>Posted by: ' . getUsername($posts[$i]['userid'], $databaseConnection) . '</p>');
+                                                        echo ('<p class="infoText">' . $posts[$i]['date'] . '</p>');
+                                                        echo ('</td>');
+                                                        echo ('</tr>');
 
-                                                    // Display the post
-                                                    echo ('<tr class="postHeader">');
-                                                    echo ('<td>');
-                                                    echo ('<h2>' . $posts[$i]['title'] . '</h2>');
-                                                    echo ('</td>');
-                                                    echo ('</tr>');
-                                                    echo ('<tr class="postContent">');
-                                                    echo ('<td>');
-                                                    echo ('<p>' . $posts[$i]['body'] . '</p>');
-                                                    echo ('</td>');
-                                                    echo ('</tr>');
-                                                    echo ('<tr class="postFooter">');
-                                                    echo ('<td class="postFooter">');
-                                                    echo ('<p>Posted by: ' . getUsername($posts[$i]['userid'], $databaseConnection) . '</p>');
-                                                    echo ('<p class="infoText">' . $posts[$i]['date'] . '</p>');
-                                                    echo ('</td>');
-                                                    echo ('</tr>');
+                                                        echo ('</tbody>');
+                                                        echo ('</table>');
+                                                        echo ('</td>');
+                                                        echo ('</tr>');
 
-                                                    echo ('</tbody>');
-                                                    echo ('</table>');
-                                                    echo ('</td>');
-                                                    echo ('</tr>');
-
-                                                    echo ('<tr id="spacer" style="height: 40px;"></tr>');
+                                                        echo ('<tr id="spacer" style="height: 40px;"></tr>');
+                                                    }
                                                 }
+
                                                 ?>
                                             </tbody>
                                         </table>
