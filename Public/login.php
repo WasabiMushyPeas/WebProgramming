@@ -75,12 +75,21 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             consoleLog("Invalid username or password or user does not exist");
         }
     } else {
-        consoleLog("Username and password are not clean");
+        consoleLog("Username and password have unacceptable characters");
     }
 
     if (!doesUserExist($username, $databaseConnection)) {
         createUser(uniqid(), $username, $password, $username, $databaseConnection);
-        header('Location: login.php');
+        if (loginUser($username, $password, $databaseConnection)) {
+            $_SESSION['loggedIn'] = true;
+            $_SESSION['username'] = $username;
+            $_SESSION['userid'] = getUserId($username, $databaseConnection);
+            setSessionTheme($tempUsername, $databaseConnection);
+            header('Location: index.php');
+            exit();
+        } else {
+            consoleLog("Invalid username or password");
+        }
     }
 }
 
@@ -119,7 +128,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                 <?php include 'header.php'; ?>
                 <tr>
                     <td>
-                        <h1>Login</h1>
+                        <h1>Login or Create Account</h1>
                     </td>
                 </tr>
                 <tr>
