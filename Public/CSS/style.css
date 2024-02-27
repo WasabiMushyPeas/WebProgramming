@@ -126,7 +126,7 @@ body {
 .bottomButton2 {
     position: fixed;
 
-    bottom: calc(1.5rem + 50px + 0.2rem);
+    bottom: 4.825rem;
     right: 1.5rem;
 
     transition: 0.5s;
