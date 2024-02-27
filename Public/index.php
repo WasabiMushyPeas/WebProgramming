@@ -152,10 +152,10 @@ if (!isset($_SESSION['loggedIn'])) {
     </center>
 
     <a id="postButton" class="bottomButton" href="./post.php">
-        <img id="postButtonIMG" src="./IMAGES/create.png">
+        <img class="postButtonIMG" src="./IMAGES/create.png">
     </a>
     <a id="userButton" class="bottomButton2" href="./user.php">
-        <img id="userButtonIMG" src="./IMAGES/user.png">
+        <img class="userButtonIMG" src="./IMAGES/user.png">
     </a>
 
 </body>
