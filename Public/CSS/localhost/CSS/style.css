@@ -106,7 +106,7 @@ body {
 
 
 /* Create Post Button */
-.bottomButton {
+#postButton {
     position: fixed;
 
     bottom: 1.5rem;
@@ -115,15 +115,15 @@ body {
     transition: 0.5s;
 }
 
-.bottomButton:hover {
+#postButton:hover {
     scale: 1.1;
 }
 
-.bottomButton:active {
+#postButton:active {
     scale: 0.9;
 }
 
-.bottomButton2 {
+#userButton {
     position: fixed;
 
     bottom: calc(1.5rem + 50px + 0.2rem);
@@ -132,10 +132,10 @@ body {
     transition: 0.5s;
 }
 
-#bottomButton2:hover {
+#userButton:hover {
     scale: 1.1;
 }
 
-#bottomButton2:active {
+#userButton:active {
     scale: 0.9;
 }
