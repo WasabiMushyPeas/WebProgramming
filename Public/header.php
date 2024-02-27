@@ -7,7 +7,7 @@ echo ('
                         <tbody>
                             <tr>
                                 <td>
-                                    <a href="./index.php"><img src="./IMAGES/poster.png" width="38" height="38"></a>
+                                    <a href="./index.php" class="headerP"><img src="./IMAGES/poster.png" width="38" height="38"></a>
                                 </td>
                                 <td>
                                     <h1 class="headerP">Poster</h1>

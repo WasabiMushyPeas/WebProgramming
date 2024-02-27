@@ -62,6 +62,11 @@ body {
     border-radius: 5px;
 }
 
+.headerP {
+    /* Move header down 15px */
+    margin-top: 20px;
+}
+
 /* Table for the header */
 #headerTableData {
     border-radius: 5px;
