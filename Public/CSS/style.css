@@ -131,7 +131,7 @@ body {
 .bottomButton2 {
     position: fixed;
 
-    bottom: 4.825rem;
+    bottom: 4.925rem;
     right: 1.5rem;
 
     transition: 0.5s;
@@ -142,5 +142,22 @@ body {
 }
 
 .bottomButton2:active {
+    scale: 0.9;
+}
+
+.bottomButton3 {
+    position: fixed;
+
+    bottom: 8.025rem;
+    right: 1.5rem;
+
+    transition: 0.5s;
+}
+
+.bottomButton3:hover {
+    scale: 1.1;
+}
+
+.bottomButton3:active {
     scale: 0.9;
 }

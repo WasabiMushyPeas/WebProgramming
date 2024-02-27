@@ -59,7 +59,7 @@ if (isset($_POST['mode'])) {
                             echo ('<br>');
                         }
                         ?>
-                        <input type="submit" value="Save">
+                        <input title="save" class="bottomButton3" type="image" name="submit" src="./IMAGES/save.png">
                     </form>
                 </td>
             </tr>
