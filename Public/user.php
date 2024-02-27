@@ -1,5 +1,8 @@
 <?php
-session_start();
+// if session is not started, start session
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // If the user is not logged in, redirect to the login page
 if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) {
@@ -63,10 +66,10 @@ if (isset($_POST['mode'])) {
         </table>
     </center>
 
-    <a id="homeButton" class="bottomButton" href="./index.php">
+    <a id="homeButton" class="bottomButton2" href="./index.php">
         <img id="postButtonIMG" src="./IMAGES/home.png">
     </a>
-    <a id="logoutButton" class="bottomButton2" href="./logout.php">
+    <a id="logoutButton" class="bottomButton" href="./logout.php">
         <img id="postButtonIMG" src="./IMAGES/logout.png">
     </a>
 </body>

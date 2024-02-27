@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 @require 'database.php';
 
 // If the user is not logged in, redirect to the login page
