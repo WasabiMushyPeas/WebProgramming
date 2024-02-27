@@ -132,10 +132,10 @@ body {
     transition: 0.5s;
 }
 
-#bottomButton2:hover {
+.bottomButton2:hover {
     scale: 1.1;
 }
 
-#bottomButton2:active {
+.bottomButton2:active {
     scale: 0.9;
 }
