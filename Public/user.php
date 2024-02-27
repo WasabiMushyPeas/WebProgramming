@@ -66,10 +66,10 @@ if (isset($_POST['mode'])) {
         </table>
     </center>
 
-    <a id="homeButton" class="bottomButton2" href="./index.php">
+    <a id="homeButton" class="bottomButton2" href="./index.php" title="home">
         <img class="postButtonIMG" src="./IMAGES/home.png">
     </a>
-    <a id="logoutButton" class="bottomButton" href="./logout.php">
+    <a id="logoutButton" class="bottomButton" href="./logout.php" title="logout">
         <img class="postButtonIMG" src="./IMAGES/logout.png">
     </a>
 </body>

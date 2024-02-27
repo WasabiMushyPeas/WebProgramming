@@ -133,7 +133,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                         <form method="post">
                             <input type="text" name="username" placeholder="Username">
                             <br><br>
-                            <input type="text" name="password" placeholder="Password">
+                            <input type="password" name="password" placeholder="Password">
                             <br><br>
                             <input type="submit" value="Login">
                         </form>
