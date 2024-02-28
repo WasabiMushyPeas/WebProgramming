@@ -40,7 +40,9 @@ if (isset($_POST['mode'])) {
             <?php include 'header.php'; ?>
             <tr>
                 <td>
-                    <h1>User Settings</h1>
+                    <h1>User Settings for
+                        <?php echo ($_SESSION['username']) ?>
+                    </h1>
                 </td>
             </tr>
             <tr>

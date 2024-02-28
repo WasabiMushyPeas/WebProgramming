@@ -111,6 +111,9 @@ if (!isset($_SESSION['loggedIn'])) {
                                                         echo ('<table style="width: 100%;">');
                                                         echo ('<tbody style="width: 100%;">');
 
+                                                        echo ('<tr class="postVotes">');
+                                                        echo ('<td class="postVotes">');
+                                                        echo ('<p class="upvoteP"> <img src="./IMAGES/arrow.png" class="upvoteArrow"> ' . $posts[$i]['upvotes'] . '<img src="./IMAGES/arrow.png" class="downvoteArrow"> ' . $posts[$i]['downvotes'] . '</p>');
                                                         // Display the post
                                                         echo ('<tr class="postHeader">');
                                                         echo ('<td>');
@@ -122,6 +125,7 @@ if (!isset($_SESSION['loggedIn'])) {
                                                         echo ('<p>' . $posts[$i]['body'] . '</p>');
                                                         echo ('</td>');
                                                         echo ('</tr>');
+
                                                         echo ('<tr class="postFooter">');
                                                         echo ('<td class="postFooter">');
                                                         echo ('<p>Posted by: ' . getUsername($posts[$i]['userid'], $databaseConnection) . '</p>');

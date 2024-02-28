@@ -109,6 +109,25 @@ body {
     text-align: right;
 }
 
+.upvoteArrow {
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+    rotate: -90deg;
+}
+
+.downvoteArrow {
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+    rotate: 90deg;
+}
+
+.upvoteP {
+    padding: 5px;
+    text-justify: center;
+}
+
 
 /* Create Post Button */
 .bottomButton {
