@@ -18,6 +18,14 @@ if (!isset($_SESSION['mode'])) {
 if (!isset($_SESSION['loggedIn'])) {
     $_SESSION['loggedIn'] = false;
 }
+
+
+
+if (isset($_POST["postidUpvote"])) {
+    $databaseConnection = connectToDatabase();
+    upvotePost($_POST["postidUpvote"], $databaseConnection);
+    header('Location: index.php');
+}
 ?>
 
 <?php include 'theme.php'; ?>
@@ -113,7 +121,7 @@ if (!isset($_SESSION['loggedIn'])) {
 
                                                         echo ('<tr class="postVotes">');
                                                         echo ('<td class="postVotes">');
-                                                        echo ('<img src="./IMAGES/arrow.png" class="upvoteArrow"><p class="upvoteP">' . $posts[$i]['upvotes'] . '</p><img src="./IMAGES/arrow.png" class="downvoteArrow"><p class="upvoteP">' . $posts[$i]['downvotes'] . '</p>');
+                                                        echo ('<form method="post" style="display: inline;"><input name="postidUpvote" hidden type="text" value="' . $posts[$i]['postid'] . '"><input title="upvote" type="image" name="upvote" src="./IMAGES/arrow.png" class="upvoteArrow"></form><p class="upvoteP">' . $posts[$i]['upvotes'] . '</p><form method="post" style="display: inline;"><input hidden name="postidDownvote" type="text" value="' . $posts[$i]['postid'] . '"><input title="downvote" type="image" name="downvote" src="./IMAGES/arrow.png" class="downvoteArrow"></form><p class="upvoteP">' . $posts[$i]['downvotes'] . '</p>');
                                                         // Display the post
                                                         echo ('<tr class="postHeader">');
                                                         echo ('<td>');

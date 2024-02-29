@@ -53,7 +53,7 @@ function doesUserExist($username, $dataBaseConnection)
 function createUser($userid, $username, $password, $nickname, $dataBaseConnection)
 {
     $password = hashPassword($password);
-    $sql = "INSERT INTO users (userid, username, password, nickname) VALUES ('$userid', '$username', '$password', '$nickname')";
+    $sql = "INSERT INTO users (userid, username, password, nickname, postVoted) VALUES ('$userid', '$username', '$password', '$nickname', '')";
     if (mysqli_query($dataBaseConnection, $sql)) {
         consoleLog("New record created successfully");
     } else {
@@ -170,6 +170,33 @@ function howManyUsers($dataBaseConnection)
     return count($users);
 }
 
+function postVotedAdd($username, $postid, $dataBaseConnection)
+{
+    $sql = "SELECT postVoted FROM users WHERE username = '$username'";
+    $result = mysqli_query($dataBaseConnection, $sql);
+    $user = mysqli_fetch_assoc($result);
+    $postVoted = $user['postVoted'];
+    $postVoted = $postVoted . ',' . $postid;
+    $sql = "UPDATE users SET postVoted = '$postVoted' WHERE username = '$username'";
+    if (mysqli_query($dataBaseConnection, $sql)) {
+        consoleLog("Record updated successfully");
+    } else {
+        consoleLog("Error: " . $sql . "<br>" . mysqli_error($dataBaseConnection));
+    }
+}
+
+function getPostVoted($username, $dataBaseConnection)
+{
+    $sql = "SELECT postVoted FROM users WHERE username = '$username'";
+    $result = mysqli_query($dataBaseConnection, $sql);
+    $user = mysqli_fetch_assoc($result);
+    if ($user['postVoted'] == '') {
+        return array();
+    }
+    $posts = explode(',', $user['postVoted']);
+    return $posts;
+}
+
 
 // --------------------------------- Database Post Functions ---------------------------------
 function createPost($userid, $postid, $title, $body, $date, $dataBaseConnection)
@@ -206,6 +233,14 @@ function getPosts($dataBaseConnection)
     return $posts;
 }
 
+function getNumberOfPosts($dataBaseConnection)
+{
+    $sql = "SELECT * FROM posts";
+    $result = mysqli_query($dataBaseConnection, $sql);
+    $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return count($posts);
+}
+
 
 function setPostUpvotes($postid, $upvotes, $dataBaseConnection)
 {
@@ -217,6 +252,14 @@ function setPostUpvotes($postid, $upvotes, $dataBaseConnection)
     }
 }
 
+function getPostUpvotes($postid, $dataBaseConnection)
+{
+    $sql = "SELECT upvotes FROM posts WHERE postid = '$postid'";
+    $result = mysqli_query($dataBaseConnection, $sql);
+    $post = mysqli_fetch_assoc($result);
+    return $post['upvotes'];
+}
+
 function setPostDownvotes($postid, $downvotes, $dataBaseConnection)
 {
     $sql = "UPDATE posts SET downvotes = '$downvotes' WHERE postid = '$postid'";
@@ -225,6 +268,28 @@ function setPostDownvotes($postid, $downvotes, $dataBaseConnection)
     } else {
         consoleLog("Error: " . $sql . "<br>" . mysqli_error($dataBaseConnection));
     }
+}
+
+function getPostDownvotes($postid, $dataBaseConnection)
+{
+    $sql = "SELECT downvotes FROM posts WHERE postid = '$postid'";
+    $result = mysqli_query($dataBaseConnection, $sql);
+    $post = mysqli_fetch_assoc($result);
+    return $post['downvotes'];
+}
+
+function upvotePost($postid, $voterid, $dataBaseConnection)
+{
+    $upvotes = getPostUpvotes($postid, $dataBaseConnection);
+    $upvotes++;
+    setPostUpvotes($postid, $upvotes, $dataBaseConnection);
+}
+
+function downvotePost($postid, $voterid, $dataBaseConnection)
+{
+    $downvotes = getPostDownvotes($postid, $dataBaseConnection);
+    $downvotes++;
+    setPostDownvotes($postid, $downvotes, $dataBaseConnection);
 }
 
 

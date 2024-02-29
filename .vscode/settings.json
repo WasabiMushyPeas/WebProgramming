@@ -6,6 +6,7 @@
 		"postits",
 		"upvote",
 		"upvotes",
-		"userid"
+		"userid",
+		"voterid"
 	]
 }

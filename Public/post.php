@@ -37,7 +37,7 @@ if (isset($_POST['post'])) {
     $date = date("Y-m-d");
 
     // Generate Unique ID
-    $id = uniqid();
+    $id = getNumberOfPosts($databaseConnection) + 1;
 
     // Clean the input
     $post = htmlspecialchars($post);

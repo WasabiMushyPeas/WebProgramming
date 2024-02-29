@@ -157,6 +157,10 @@ body {
     display: inline;
 }
 
+.postVotes {
+    text-align: right;
+}
+
 
 /* Create Post Button */
 .bottomButton {
