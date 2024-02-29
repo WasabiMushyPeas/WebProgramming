@@ -170,24 +170,29 @@ function howManyUsers($dataBaseConnection)
     return count($users);
 }
 
-function postVotedAdd($username, $postid, $dataBaseConnection)
+function postVotedAdd($userid, $postid, $dataBaseConnection)
 {
-    $sql = "SELECT postVoted FROM users WHERE username = '$username'";
+    $sql = "SELECT postVoted FROM users WHERE userid = '$userid'";
     $result = mysqli_query($dataBaseConnection, $sql);
     $user = mysqli_fetch_assoc($result);
-    $postVoted = $user['postVoted'];
-    $postVoted = $postVoted . ',' . $postid;
-    $sql = "UPDATE users SET postVoted = '$postVoted' WHERE username = '$username'";
+    $postVoted = '';
+    if ($user['postVoted'] == '') {
+        $postVoted = $postid;
+    } else {
+        $postVoted = $user['postVoted'];
+        $postVoted = $postVoted . ',' . $postid;
+    }
+    $sql = "UPDATE users SET postVoted = '$postVoted' WHERE userid = '$userid'";
     if (mysqli_query($dataBaseConnection, $sql)) {
         consoleLog("Record updated successfully");
     } else {
-        consoleLog("Error: " . $sql . "<br>" . mysqli_error($dataBaseConnection));
+        consoleLog("Error: " . $sql . "\n" . mysqli_error($dataBaseConnection));
     }
 }
 
-function getPostVoted($username, $dataBaseConnection)
+function getPostVoted($userid, $dataBaseConnection)
 {
-    $sql = "SELECT postVoted FROM users WHERE username = '$username'";
+    $sql = "SELECT postVoted FROM users WHERE userid = '$userid'";
     $result = mysqli_query($dataBaseConnection, $sql);
     $user = mysqli_fetch_assoc($result);
     if ($user['postVoted'] == '') {
@@ -195,6 +200,17 @@ function getPostVoted($username, $dataBaseConnection)
     }
     $posts = explode(',', $user['postVoted']);
     return $posts;
+}
+
+function votedOnPost($userid, $postid, $dataBaseConnection)
+{
+    $posts = getPostVoted($userid, $dataBaseConnection);
+    for ($i = 0; $i < count($posts); $i++) {
+        if ($posts[$i] == $postid) {
+            return true;
+        }
+    }
+    return false;
 }
 
 
@@ -281,15 +297,23 @@ function getPostDownvotes($postid, $dataBaseConnection)
 function upvotePost($postid, $voterid, $dataBaseConnection)
 {
     $upvotes = getPostUpvotes($postid, $dataBaseConnection);
+    if (votedOnPost($voterid, $postid, $dataBaseConnection)) {
+        return;
+    }
     $upvotes++;
     setPostUpvotes($postid, $upvotes, $dataBaseConnection);
+    postVotedAdd($voterid, $postid, $dataBaseConnection);
 }
 
 function downvotePost($postid, $voterid, $dataBaseConnection)
 {
     $downvotes = getPostDownvotes($postid, $dataBaseConnection);
+    if (votedOnPost($voterid, $postid, $dataBaseConnection)) {
+        return;
+    }
     $downvotes++;
     setPostDownvotes($postid, $downvotes, $dataBaseConnection);
+    postVotedAdd($voterid, $postid, $dataBaseConnection);
 }
 
 
