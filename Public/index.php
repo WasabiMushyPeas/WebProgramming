@@ -113,7 +113,7 @@ if (!isset($_SESSION['loggedIn'])) {
 
                                                         echo ('<tr class="postVotes">');
                                                         echo ('<td class="postVotes">');
-                                                        echo ('<p class="upvoteP"> <img src="./IMAGES/arrow.png" class="upvoteArrow"> ' . $posts[$i]['upvotes'] . '<img src="./IMAGES/arrow.png" class="downvoteArrow"> ' . $posts[$i]['downvotes'] . '</p>');
+                                                        echo ('<img src="./IMAGES/arrow.png" class="upvoteArrow"><p class="upvoteP">' . $posts[$i]['upvotes'] . '</p><img src="./IMAGES/arrow.png" class="downvoteArrow"><p class="upvoteP">' . $posts[$i]['downvotes'] . '</p>');
                                                         // Display the post
                                                         echo ('<tr class="postHeader">');
                                                         echo ('<td>');

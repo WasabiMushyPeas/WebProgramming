@@ -112,20 +112,49 @@ body {
 .upvoteArrow {
     width: 20px;
     height: 20px;
-    margin: 2px;
+    margin: 0.5px;
     rotate: -90deg;
+    display: inline;
+    transform: translateX(-3px);
+    transition: 0.5s;
+}
+
+
+.upvoteArrow:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.upvoteArrow:active {
+    scale: 0.9;
 }
 
 .downvoteArrow {
     width: 20px;
     height: 20px;
-    margin: 2px;
+    margin: 0.5px;
     rotate: 90deg;
+    display: inline;
+    transform: translateX(3px);
+    transition: 0.5s;
+}
+
+.downvoteArrow:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.downvoteArrow:active {
+    scale: 0.9;
 }
 
 .upvoteP {
-    padding: 5px;
+    padding: 2px;
+    color: var(--text);
     text-justify: center;
+    text-align: center;
+    font-size: 18px;
+    display: inline;
 }
 
 
