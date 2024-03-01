@@ -133,6 +133,9 @@ function setUserBanned($username, $banned, $dataBaseConnection)
 
 function loginUser($username, $password, $dataBaseConnection)
 {
+    if ($username == '' || $password == '') {
+        return false;
+    }
     if (doesUserExist($username, $dataBaseConnection) == false) {
         return false;
     } else {
@@ -271,8 +274,12 @@ function setPostUpvotes($postid, $upvotes, $dataBaseConnection)
 function getPostUpvotes($postid, $dataBaseConnection)
 {
     $sql = "SELECT upvotes FROM posts WHERE postid = '$postid'";
+    consoleLog($postid);
     $result = mysqli_query($dataBaseConnection, $sql);
     $post = mysqli_fetch_assoc($result);
+    if ($post['upvotes'] == '') {
+        return 0;
+    }
     return $post['upvotes'];
 }
 
@@ -291,6 +298,9 @@ function getPostDownvotes($postid, $dataBaseConnection)
     $sql = "SELECT downvotes FROM posts WHERE postid = '$postid'";
     $result = mysqli_query($dataBaseConnection, $sql);
     $post = mysqli_fetch_assoc($result);
+    if ($post['downvotes'] == '') {
+        return 0;
+    }
     return $post['downvotes'];
 }
 

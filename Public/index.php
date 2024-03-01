@@ -22,15 +22,21 @@ if (!isset($_SESSION['loggedIn'])) {
 
 
 if (isset($_POST["postidUpvote"])) {
+    if ($_SESSION['loggedIn'] == false) {
+        header('Location: login.php');
+    }
     consoleLog("upvote");
     $databaseConnection = connectToDatabase();
-    upvotePost($_SESSION['userid'], $_POST["postidUpvote"], $databaseConnection);
+    upvotePost($_POST["postidUpvote"], $_SESSION['userid'], $databaseConnection);
     header('Location: index.php');
 }
 if (isset($_POST["postidDownvote"])) {
+    if ($_SESSION['loggedIn'] == false) {
+        header('Location: login.php');
+    }
     ConsoleLog("downvote");
     $databaseConnection = connectToDatabase();
-    downvotePost($_SESSION['userid'], $_POST["postidDownvote"], $databaseConnection);
+    downvotePost($_POST["postidDownvote"], $_SESSION['userid'], $databaseConnection);
     header('Location: index.php');
 }
 ?>

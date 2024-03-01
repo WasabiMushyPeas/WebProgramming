@@ -94,6 +94,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             consoleLog("Invalid username or password");
         }
     }
+
 }
 
 
