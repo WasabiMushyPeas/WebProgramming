@@ -24,20 +24,23 @@ if (!isset($_SESSION['loggedIn'])) {
 if (isset($_POST["postidUpvote"])) {
     if ($_SESSION['loggedIn'] == false) {
         header('Location: login.php');
+    } else {
+        consoleLog("upvote");
+        $databaseConnection = connectToDatabase();
+        upvotePost($_POST["postidUpvote"], $_SESSION['userid'], $databaseConnection);
+        header('Location: index.php');
     }
-    consoleLog("upvote");
-    $databaseConnection = connectToDatabase();
-    upvotePost($_POST["postidUpvote"], $_SESSION['userid'], $databaseConnection);
-    header('Location: index.php');
 }
 if (isset($_POST["postidDownvote"])) {
     if ($_SESSION['loggedIn'] == false) {
         header('Location: login.php');
+    } else {
+        consoleLog("downvote");
+        $databaseConnection = connectToDatabase();
+        downvotePost($_POST["postidDownvote"], $_SESSION['userid'], $databaseConnection);
+        header('Location: index.php');
     }
-    ConsoleLog("downvote");
-    $databaseConnection = connectToDatabase();
-    downvotePost($_POST["postidDownvote"], $_SESSION['userid'], $databaseConnection);
-    header('Location: index.php');
+
 }
 ?>
 

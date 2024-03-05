@@ -64,6 +64,14 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $tempUsername = mysqli_real_escape_string($databaseConnection, $tempUsername);
     $tempPassword = mysqli_real_escape_string($databaseConnection, $tempPassword);
 
+    if (strlen($username) > 15) {
+        $username = substr($username, 0, 15);
+    }
+
+    if (strlen($password) > 35) {
+        $password = substr($password, 0, 35);
+    }
+
     consoleLog("Hashed password: " . hashPassword($password));
     if ($tempUsername == $username && $tempPassword == $password) {
         if (loginUser($username, $password, $databaseConnection)) {

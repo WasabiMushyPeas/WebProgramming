@@ -31,15 +31,15 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $tempUsername = mysqli_real_escape_string($databaseConnection, $tempUsername);
     $tempPassword = mysqli_real_escape_string($databaseConnection, $tempPassword);
 
-    consoleLog("Hashed password: " . hashPassword($password));
+    consoleLog("Hashed password: " . hashPassword($tempPassword));
 
-    if (!doesUserExist($username, $databaseConnection)) {
+    if (!doesUserExist($tempUsername, $databaseConnection)) {
         $id = howManyUsers($databaseConnection) + 1;
-        createUser($id, $username, $password, $username, $databaseConnection);
-        if (loginUser($username, $password, $databaseConnection)) {
+        createUser($id, $tempUsername, $tempPassword, $tempUsername, $databaseConnection);
+        if (loginUser($tempUsername, $tempPassword, $databaseConnection)) {
             $_SESSION['loggedIn'] = true;
-            $_SESSION['username'] = $username;
-            $_SESSION['userid'] = getUserId($username, $databaseConnection);
+            $_SESSION['username'] = $tempUsername;
+            $_SESSION['userid'] = getUserId($tempUsername, $databaseConnection);
             setSessionTheme($tempUsername, $databaseConnection);
             header('Location: index.php');
             exit();
