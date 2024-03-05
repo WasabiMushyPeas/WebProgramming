@@ -11,39 +11,6 @@ require 'database.php';
 $tempUsername;
 $tempPassword;
 
-// if (isset($_POST['username']) && !empty($_POST['username'])) {
-//     // Check to see if input is clean
-//     $username = htmlspecialchars($_POST['username']);
-//     if ($username == $_POST['username']) {
-//         $tempUsername = $username;
-//         exit();
-//     } else {
-//         //  Alert the user to enter a valid username
-//         echo ('<script>alert("Please enter a valid username")</script>');
-//     }
-
-// } else if (isset($_POST['username']) && empty($_POST['username'])) {
-//     //  Alert the user to enter a username
-//     echo ('<script>alert("Please enter a username")</script>');
-// }
-
-// if (isset($_POST['password']) && !empty($_POST['password'])) {
-//     // Check to see if input is clean
-//     $password = htmlspecialchars($_POST['password']);
-//     if ($password == $_POST['password']) {
-//         $tempPassword = $password;
-//         exit();
-//     } else {
-//         //  Alert the user to enter a valid password
-//         echo ('<script>alert("Please enter a valid password")</script>');
-//     }
-
-// } else if (isset($_POST['password']) && empty($_POST['password'])) {
-//     //  Alert the user to enter a password
-//     echo ('<script>alert("Please enter a password")</script>');
-// }
-
-
 
 
 // --------------------------------- Database ---------------------------------
@@ -65,7 +32,10 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $tempPassword = mysqli_real_escape_string($databaseConnection, $tempPassword);
 
     consoleLog("Hashed password: " . hashPassword($password));
-    if ($tempUsername == $username && $tempPassword == $password) {
+
+    if (!doesUserExist($username, $databaseConnection)) {
+        $id = howManyUsers($databaseConnection) + 1;
+        createUser($id, $username, $password, $username, $databaseConnection);
         if (loginUser($username, $password, $databaseConnection)) {
             $_SESSION['loggedIn'] = true;
             $_SESSION['username'] = $username;
@@ -74,25 +44,14 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             header('Location: index.php');
             exit();
         } else {
-            consoleLog("Invalid username or password or user does not exist");
+            consoleLog("Invalid username or password");
         }
-    } else {
-        consoleLog("Username and password have unacceptable characters");
-    }
-
-    if (!doesUserExist($username, $databaseConnection)) {
-        header('Location: createAccount.php');
     }
 
 }
 
 
-
-
-
 ?>
-
-
 
 
 
@@ -115,7 +74,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                 <?php include 'header.php'; ?>
                 <tr>
                     <td>
-                        <h1>Login or <a href="./createAccount.php">Create Account</a></h1>
+                        <h1>Create Account</h1>
                     </td>
                 </tr>
                 <tr>
@@ -125,7 +84,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                             <br><br>
                             <input type="password" name="password" placeholder="Password">
                             <br><br>
-                            <input type="submit" value="Login">
+                            <input type="submit" value="Create Account">
                         </form>
                     </td>
                 </tr>
