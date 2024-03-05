@@ -81,6 +81,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     }
 
     if (!doesUserExist($username, $databaseConnection)) {
+        // Ask the user if they want to create an account
+        header('Location: createAccount.php');
         $id = howManyUsers($databaseConnection) + 1;
         createUser($id, $username, $password, $username, $databaseConnection);
         if (loginUser($username, $password, $databaseConnection)) {

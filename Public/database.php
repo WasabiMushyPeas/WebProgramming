@@ -133,7 +133,8 @@ function setUserBanned($username, $banned, $dataBaseConnection)
 
 function loginUser($username, $password, $dataBaseConnection)
 {
-    if ($username == '' || $password == '') {
+    // make sure the username is not just spaces
+    if (trim($username) == '') {
         return false;
     }
     if (doesUserExist($username, $dataBaseConnection) == false) {
@@ -220,6 +221,11 @@ function votedOnPost($userid, $postid, $dataBaseConnection)
 // --------------------------------- Database Post Functions ---------------------------------
 function createPost($userid, $postid, $title, $body, $date, $dataBaseConnection)
 {
+    // Make sure the title and body are not just spaces
+    if (trim($title) == '' || trim($body) == '') {
+        echo ('<script>alert("Please enter a title and body")</script>');
+        return;
+    }
     $sql = "INSERT INTO posts (userid, postid, title, body, upvotes, downvotes, date) VALUES ('$userid', '$postid', '$title', '$body', '0', '0', '$date')";
     if (mysqli_query($dataBaseConnection, $sql)) {
         consoleLog("New record created successfully");

@@ -46,6 +46,8 @@ if (isset($_POST['post'])) {
     $header = mysqli_real_escape_string($databaseConnection, $header);
     $post = mysqli_real_escape_string($databaseConnection, $post);
 
+
+
     createPost($_SESSION['userid'], $id, $header, $post, $date, $databaseConnection);
 
     // Redirect to index.php
