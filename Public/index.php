@@ -66,6 +66,42 @@ if (isset($_POST["postidDownvote"])) {
 
                 <?php include 'header.php'; ?>
 
+                <tr id="spacer" style="height: 5px;"></tr>
+
+                <tr id="filterTableRow">
+                    <td id="filterTableData">
+                        <table id="filterTable">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <!-- Filter Form -->
+                                        <form method="post" id="filterForm">
+                                            <select name="filter" id="filter" class="filter">
+                                                <?php
+                                                if (isset($_POST['filter'])) {
+                                                    if ($_POST['filter'] == "new") {
+                                                        echo ('<option value="new" selected>New</option>');
+                                                        echo ('<option value="top">Top</option>');
+                                                    } else {
+                                                        echo ('<option value="new">New</option>');
+                                                        echo ('<option value="top" selected>Top</option>');
+                                                    }
+                                                } else {
+                                                    echo ('<option value="new" selected>New</option>');
+                                                    echo ('<option value="top">Top</option>');
+                                                }
+                                                ?>
+                                            </select>
+                                            <input type="submit" name="submit" src="./IMAGES/filter.png"
+                                                class="filterButton">
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
                 <tr id="spacer" style="height: 20px;"></tr>
 
                 <tr>
@@ -77,53 +113,6 @@ if (isset($_POST["postidDownvote"])) {
                                         <table class="postsTable">
                                             <tbody>
                                                 <?php
-                                                // // Read the posts from the file
-                                                // $file = fopen("./POSTS/posts.txt", "r");
-                                                
-                                                // // Read the file line by line
-                                                // while (!feof($file)) {
-                                                //     $line = fgets($file);
-                                                
-                                                //     if ($line != "") {
-                                                //         // Split the line into an array
-                                                //         $lineContent = explode("|>|<|", $line);
-                                                
-                                                //         echo ('<tr class="postTable">');
-                                                //         echo ('<td class="post">');
-                                                //         echo ('<table style="width: 100%;">');
-                                                //         echo ('<tbody style="width: 100%;">');
-                                                
-
-                                                //         // Display the post
-                                                //         echo ('<tr class="postHeader">');
-                                                //         echo ('<td>');
-                                                //         echo ('<h2>' . $lineContent[0] . '</h2>');
-                                                //         echo ('</td>');
-                                                //         echo ('</tr>');
-                                                //         echo ('<tr class="postContent">');
-                                                //         echo ('<td>');
-                                                //         echo ('<p>' . $lineContent[1] . '</p>');
-                                                //         echo ('</td>');
-                                                //         echo ('</tr>');
-                                                //         echo ('<tr class="postFooter">');
-                                                //         echo ('<td class="postFooter">');
-                                                //         echo ('<p>Posted by: ' . $lineContent[2] . '</p>');
-                                                //         echo ('<p class="infoText">' . $lineContent[3] . '</p>');
-                                                //         echo ('</td>');
-                                                //         echo ('</tr>');
-                                                
-                                                //         echo ('</tbody>');
-                                                //         echo ('</table>');
-                                                //         echo ('</td>');
-                                                //         echo ('</tr>');
-                                                
-                                                //         echo ('<tr id="spacer" style="height: 40px;"></tr>');
-                                                
-                                                //     }
-                                                // }
-                                                
-                                                // fclose($file);
-                                                
                                                 // Get posts from the database
                                                 $databaseConnection = connectToDatabase();
                                                 $posts = getPosts($databaseConnection);

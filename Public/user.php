@@ -41,6 +41,7 @@ if (isset($_POST['mode'])) {
             <tr>
                 <td>
                     <h1>User Settings for
+
                         <?php echo ($_SESSION['username']) ?>
                     </h1>
                 </td>
