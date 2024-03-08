@@ -42,6 +42,10 @@ if (isset($_POST["postidDownvote"])) {
     }
 
 }
+
+if (isset($_POST['filter'])) {
+    $_SESSION['filter'] = $_POST['filter'];
+}
 ?>
 
 <?php include 'theme.php'; ?>
@@ -78,8 +82,8 @@ if (isset($_POST["postidDownvote"])) {
                                         <form method="post" id="filterForm">
                                             <select name="filter" id="filter" class="filter">
                                                 <?php
-                                                if (isset($_POST['filter'])) {
-                                                    if ($_POST['filter'] == "new") {
+                                                if (isset($_SESSION['filter'])) {
+                                                    if ($_SESSION['filter'] == "new") {
                                                         echo ('<option value="new" selected>New</option>');
                                                         echo ('<option value="top">Top</option>');
                                                     } else {
@@ -118,8 +122,8 @@ if (isset($_POST["postidDownvote"])) {
                                                 $databaseConnection = connectToDatabase();
                                                 $posts = getPosts($databaseConnection);
 
-                                                if (isset($_POST['filter'])) {
-                                                    if ($_POST['filter'] == "top") {
+                                                if (isset($_SESSION['filter'])) {
+                                                    if ($_SESSION['filter'] == "top") {
                                                         $posts = sortPostsTop($posts);
                                                     }
                                                 }

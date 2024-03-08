@@ -5,9 +5,12 @@ if (session_status() == PHP_SESSION_NONE) {
 
 $username = "";
 
-if ($_SESSION['loggedIn'] == true) {
-    $username = " - " . $_SESSION['username'];
+if (isset($_SESSION['loggedIn'])) {
+    if ($_SESSION['loggedIn'] == true) {
+        $username = " - " . $_SESSION['username'];
+    }
 }
+
 
 
 echo ('
