@@ -80,9 +80,13 @@ body {
 
 /* Table for the Filter */
 #filterTableData {
+    margin-top: auto;
+    margin-bottom: auto;
     border-radius: 5px;
-    width: 60%;
     background-color: var(--secondary);
+    justify-items: center;
+    align-items: center;
+    padding: 5px;
 }
 
 #filterTable {

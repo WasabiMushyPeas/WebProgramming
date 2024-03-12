@@ -77,7 +77,7 @@ if (isset($_POST['filter'])) {
                         <table id="filterTable">
                             <tbody>
                                 <tr>
-                                    <td>
+                                    <td id="filterTableData">
                                         <!-- Filter Form -->
                                         <form method="post" id="filterForm">
                                             <select name="filter" id="filter" class="filter">
