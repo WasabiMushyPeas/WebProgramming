@@ -57,36 +57,6 @@ function doesUserExist($username, $dataBaseConnection)
 
 function createUser($userid, $username, $password, $nickname, $dataBaseConnection)
 {
-    // Only Allow lower case and upper case letters
-    $matches = false;
-    $letters = explode("", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
-    $usernameLetters = explode("", $username);
-    $passwordLetters = explode("", $password);
-    if (count($usernameLetters) > 1 && count($passwordLetters) > 1) {
-        for ($i = 0; $i < count($usernameLetters); $i++) {
-            for ($j = 0; $j < count($letters); $j++) {
-                if ($usernameLetters[$i] == $letters[$j]) {
-                    $matches = true;
-                }
-            }
-            if (!$matches) {
-                return;
-            }
-        }
-
-        for ($i = 0; $i < count($passwordLetters); $i++) {
-            for ($j = 0; $j < count($letters); $j++) {
-                if ($passwordLetters[$i] == $letters[$j]) {
-                    $matches = true;
-                }
-            }
-            if (!$matches) {
-                return;
-            }
-        }
-    } else {
-        return;
-    }
     $password = hashPassword($password);
     $sql = "INSERT INTO users (userid, username, password, nickname, postVoted) VALUES ('$userid', '$username', '$password', '$nickname', '')";
     if (mysqli_query($dataBaseConnection, $sql)) {
