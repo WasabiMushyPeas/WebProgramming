@@ -10,6 +10,16 @@ function sortPostsTop($posts)
     if (count($posts) > 1) {
         for ($i = 0; $i < count($posts); $i++) {
             for ($j = 0; $j < count($posts); $j++) {
+                if ($sortedPosts[$i]['upvotes'] > $sortedPosts[$j]['upvotes']) {
+                    $temp = $sortedPosts[$i];
+                    $sortedPosts[$i] = $sortedPosts[$j];
+                    $sortedPosts[$j] = $temp;
+                }
+            }
+        }
+
+        for ($i = 0; $i < count($posts); $i++) {
+            for ($j = 0; $j < count($posts); $j++) {
                 if ($sortedPosts[$i]['upvotes'] - $sortedPosts[$i]['downvotes'] > $sortedPosts[$j]['upvotes'] - $sortedPosts[$j]['downvotes']) {
                     $temp = $sortedPosts[$i];
                     $sortedPosts[$i] = $sortedPosts[$j];
