@@ -30,6 +30,10 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     // Clean input for sql injection
     $tempUsername = mysqli_real_escape_string($databaseConnection, $tempUsername);
     $tempPassword = mysqli_real_escape_string($databaseConnection, $tempPassword);
+    // Only Allow lower case and upper case letters
+    $letters = explode("", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
+
+
 
     consoleLog("Hashed password: " . hashPassword($tempPassword));
 

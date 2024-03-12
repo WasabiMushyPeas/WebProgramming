@@ -35,8 +35,7 @@ echo ('<p class="infoText">' . $posts[$i]['date'] . '</p>');
 echo ('</td>');
 echo ('</tr>');
 
-echo ('
-            </tbody>');
+echo ('</tbody>');
 echo ('</table>');
 echo ('</td>');
 echo ('</tr>');
