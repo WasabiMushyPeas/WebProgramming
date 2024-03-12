@@ -30,23 +30,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     // Clean input for sql injection
     $tempUsername = mysqli_real_escape_string($databaseConnection, $tempUsername);
     $tempPassword = mysqli_real_escape_string($databaseConnection, $tempPassword);
-    // Only Allow lower case and upper case letters
-    $letters = explode("", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
-    $usernameLetters = explode("", $tempUsername);
-    $passwordLetters = explode("", $tempPassword);
-    if (count($usernameLetters) > 1 && count($passwordLetters) > 1) {
-        for ($i = 0; $i < count($posts); $i++) {
-            for ($j = 0; $j < count($posts); $j++) {
-                if ($sortedPosts[$i]['upvotes'] > $sortedPosts[$j]['upvotes']) {
-                    $temp = $sortedPosts[$i];
-                    $sortedPosts[$i] = $sortedPosts[$j];
-                    $sortedPosts[$j] = $temp;
-                }
-            }
-        }
-    } else {
 
-    }
 
 
     consoleLog("Hashed password: " . hashPassword($tempPassword));
@@ -62,7 +46,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             header('Location: index.php');
             exit();
         } else {
-            consoleLog("Invalid username or password");
+            userAlert("Invalid username or password (cannot contain spaces or special characters)");
         }
     }
 
