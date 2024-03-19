@@ -21,7 +21,7 @@ $databaseConnection = connectToDatabase();
 
 
 // --------------------------------- User Login ---------------------------------
-if (isset($_POST['username']) && isset($_POST['password'])) {
+if (isset ($_POST['username']) && isset ($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     // clean input

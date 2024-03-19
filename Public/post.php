@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 @require 'database.php';
 
 // If the user is not logged in, redirect to the login page
-if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) {
+if (!isset ($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) {
     header('Location: login.php');
     exit();
 }
@@ -15,7 +15,7 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == false) {
 
 <?php
 // check to see if the user posted
-if (isset($_POST['post'])) {
+if (isset ($_POST['post'])) {
 
     $databaseConnection = connectToDatabase();
 
